@@ -1,0 +1,54 @@
+/*
+Theme Name: Edufie
+Theme URI: http://themefie.com/edufie
+Author: Themefie
+Author URI: https://themefie.com
+Description: Edufie - Online Courses Html Template
+Version: 1.0.0
+*/
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Global
+    ## Global
+    ## Mixins
+    ## Variables
+    ## Common
+
+# Sections
+    ## Nav Bar
+    ## Banner
+    ## Brand Area
+    ## Footer
+    ## Widgets
+
+# Elements
+    ## accordion
+    ## filter
+    ## apartment
+    ## blog
+    ## city
+    ## feature
+    ## gallery
+    ## intro
+    ## main-search
+    ## pricing
+    ## service
+    ## team
+    ## user-list
+
+--------------------------------------------------------------*/
+
+//== Global Design
+@import "global/_mixins";
+@import "global/_variables";
+@import "global/_global";
+@import "global/_common";
+
+//== Sections
+@import "sections/_navbar";
+@import "sections/_content";
+@import "sections/_blog";
+@import "sections/_widgets";
+@import "sections/_dashboard";
+@import "sections/_footer";

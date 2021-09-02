@@ -1,0 +1,111 @@
+/*--------------------------------------------------
+    ##Footer
+---------------------------------------------------*/
+.footer-inner {
+  .widget-title {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .widget_link {
+    margin-bottom: 50px;
+    ul {
+      li {
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+.footer-logo {
+  margin-bottom: 87px;
+  img {
+    margin-bottom: 20px;
+  }
+}
+.footer-bottom {
+  padding: 20px 0;
+  border-top: 1px solid #e5f1fb;
+  .logo {
+    border-right: 1px solid #e5f1fb;
+    margin-right: 40px;
+    padding-right: 28px;
+  }
+  p {
+    margin-bottom: 0;
+    color: #707070;
+    font-size: 16px;
+    a {
+      color: var(--main-color);
+      font-weight: 700;
+    }
+  }
+  .social-area {
+    padding-right: 30px;
+  }
+  .single-select {
+    background: #e5f1fb;
+    border-radius: 6px;
+    border: 0;
+    height: 39px;
+    width: 110px;
+    color: var(--main-color);
+    padding: 0 15px 0 40px;
+    &:after {
+      content: "";
+      background-image: url(../../assets/fonts/globe-solid.svg);
+      background-size: 100%;
+      height: 15px;
+      width: 15px;
+      border: 0;
+      transform: inherit;
+      margin-top: -7.5px;
+      left: 16px;
+    }
+    .list {
+      top: 0;
+      transform: translateY(-100%);
+    }
+  }
+}
+.footer-area {
+  background: #f9fafd;
+  padding-top: 65px;
+  &.style-2 {
+    .footer-inner {
+      padding: 364px 0 70px;
+      background: var(--main-gradient);
+      .widget_link ul li a,
+      .widget-title {
+        color: #fff;
+      }
+    }
+  }
+  &.style-3 {
+    .footer-inner {
+      padding: 150px 0 70px;
+    }
+  }
+  &.style-4 {
+    .footer-inner {
+      padding: 423px 0 70px;
+    }
+  }
+  &.style-5 {
+    .footer-inner {
+      padding: 373px 0 70px;
+    }
+  }
+  &.style-white {
+    .footer-bottom {
+      border-top: 1px solid #fff;
+    }
+    .footer-bottom p,
+    .footer-widget h6,
+    .footer-widget p,
+    .widget_link ul li a,
+    .widget-title {
+      color: #fff;
+    }
+  }
+}

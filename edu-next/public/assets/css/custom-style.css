@@ -1,0 +1,156 @@
+.main-container {
+    flex-basis: 500px;
+    margin: 16px;
+    flex-grow: 2;
+}
+
+.container {
+    margin: auto;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
+}
+
+.quiz-app {
+    background-color: #fff;
+    padding: 10px;
+}
+
+.info {
+    background-color: #f6f6f6;
+    margin-bottom: 10px;
+}
+
+.info .category span,
+.info .count span {
+    color: #0075ff;
+    font-weight: bold;
+}
+
+.question-area h2 {
+    font-weight: normal;
+}
+
+.question-area .answers {
+    list-style: none;
+    background-color: #f6f6f6;
+    padding: 5px;
+}
+
+.question-area .answers li {
+    padding: 10px 5px;
+    display: flex;
+}
+
+.question-area .answers li:not(:last-child) {
+    border-bottom: 1px solid #ddd;
+}
+
+.question-area .answers input[type=radio]:checked+label {
+    color: #0075ff;
+    font-weight: bold;
+}
+
+.question-area .answers label {
+    color: grey;
+    margin-left: 5px;
+}
+
+.question-area button.submit {
+    background-color: #0075ff;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.question-area button.submit:hover {
+    background-color: rgba(0, 117, 255, 0.9);
+}
+
+.pullets-parent {
+    border-top: 1px solid #ddd;
+}
+
+.pullets-parent .pullets span {
+    width: 20px;
+    height: 20px;
+    background-color: #ddd;
+    border-radius: 50%;
+    margin-right: 5px;
+    display: inline-block;
+}
+
+.pullets-parent .pullets span.on {
+    background-color: #0075ff;
+}
+
+.pullets-parent .pullets span.correct {
+    background-color: #00e676;
+}
+
+.pullets-parent .pullets span.wrong {
+    background-color: #f44336;
+}
+
+.results {
+    display: none;
+}
+
+.results .bad {
+    color: #f44336;
+}
+
+.results .perfect {
+    color: #00e676;
+}
+
+.results .good {
+    color: #ff6e40;
+}
+
+.finish {
+    display: none;
+}
+
+.rating {
+    width: 100%;
+    margin: 0 auto 1em;
+    font-size: 2rem;
+    overflow: hidden;
+}
+
+.rating input {
+    float: right;
+    opacity: 0;
+    position: absolute;
+}
+
+.rating a,
+.rating label {
+    text-align: center;
+    float: right;
+    color: #aaa;
+    text-decoration: none;
+    -webkit-transition: color .4s;
+    -moz-transition: color .4s;
+    -o-transition: color .4s;
+    transition: color .4s;
+}
+
+.rating label:hover~label,
+.rating input:focus~label,
+.rating label:hover,
+.rating a:hover,
+.rating a:hover~a,
+.rating a:focus,
+.rating a:focus~a {
+    color: orange;
+    cursor: pointer;
+}
