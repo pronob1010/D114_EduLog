@@ -67,9 +67,17 @@ export default function Header(){
                                     </ul>
                                 </li>
 
-                                <li><a href="login.html">Log In</a></li>
-                                <li><a href="signup.html" className="">Sign Up</a></li>
-                                <li><a href="#" className="">Sign Out</a></li>
+                                <li>
+                                    <Link href="/login">
+                                    <a className="">Login</a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/signup">
+                                    <a className="">Sign Up</a>
+                                    </Link>
+                                </li>
+                                <li><a href="#" className="">Logout</a></li>
                             </ul>
                         </li>
                         <li className="current-menu-item">
@@ -81,9 +89,6 @@ export default function Header(){
             </div>
         </nav>
     </header>
-    <br></br>
-    <br></br>
-    <br></br>
     </>
     )
 }
