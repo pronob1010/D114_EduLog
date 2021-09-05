@@ -5,7 +5,8 @@ from rest_framework.routers import DefaultRouter
 from . views import *
 
 router = DefaultRouter()
-router.register(r"course", CoueseViewSet)
+router.register("course", CoueseViewSet, basename='course')
+router.register("prerequisite", PrerequisiteViewSet, basename='prerequisite')
 
 urlpatterns = [
     

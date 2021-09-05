@@ -7,6 +7,9 @@ import SubSection5 from '../components/ABOUT/subSection5';
 export default function About(){
     return(
         <>
+        <br></br>
+        <br></br>
+        <br></br>
         <TopBanner/>
         <SubSection3/>
         <SubSection2/>
