@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Header(){
@@ -14,7 +15,10 @@ export default function Header(){
                     </button>
                 </div>
                 <div className="logo">
-                    <a className="main-logo" href="index.html"><img src="assets/img/logo.png" alt="img" /></a>
+                    <a className="main-logo" href="index.html">
+                    {/*<img src="/assets/img/logo.png"  alt="img"/> */}
+                    <img src="/assets/img/logo.png"   alt="img"/>
+                        </a>
                 </div>
                 <div className="nav-right-part nav-right-part-mobile">
                     <ul>

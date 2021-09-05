@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function SubSection3(){
     return(
         <>
@@ -35,7 +37,7 @@ export default function SubSection3(){
                                 </div>
                                 <div className="col-lg-6 align-self-center">
                                     <div className="thumb">
-                                        <img src="assets/img/about/1.png" alt="img" />
+                                       <img src="/assets/img/about/1.png" alt="img"  />
                                     </div>
                                 </div>
                             </div>
@@ -51,7 +53,7 @@ export default function SubSection3(){
                                 </div>
                                 <div className="col-lg-6">
                                     <div className="thumb">
-                                        <img src="assets/img/about/1.png" alt="img" />
+                                       <img src="/assets/img/about/1.png" alt="img"  />
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +69,7 @@ export default function SubSection3(){
                                 </div>
                                 <div className="col-lg-6">
                                     <div className="thumb">
-                                        <img src="assets/img/about/1.png" alt="img" />
+                                       <img src="/assets/img/about/1.png" alt="img"  />
                                     </div>
                                 </div>
                             </div>

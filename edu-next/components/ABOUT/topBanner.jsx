@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function TopBanner(){
     return(
         <>
@@ -6,7 +8,7 @@ export default function TopBanner(){
             <div className="row justify-content-center">
                 <div className="col-md-5 col-8">
                     <div className="thumb">
-                        <img src="assets/img/instructor.png" alt="img" />
+                       <img src="/assets/img/instructor.png" alt="img"  />
                     </div>
                 </div>
                 <div className="col-md-7 col-sm-10 align-self-center">

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 export default function Footer(){
     return(
         <>
@@ -78,7 +79,7 @@ export default function Footer(){
                     <div className="col-xl-7 align-self-center">
                         <div className="d-md-flex align-items-center mb-4 mb-xl-0">
                             <div className="logo d-inline-block">
-                                <img src="assets/img/logo.png" alt="img" />
+                               <img src="assets/img/logo.png" alt="img" />
                             </div>
                             <div className="copyright-area">
                                 <p>© 2021 - Themefie. All Rights Reserved</p>

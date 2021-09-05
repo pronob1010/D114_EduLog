@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.deletion import CASCADE
+from django.db.models.deletion import CASCADE, SET_NULL
 from django.db.models.expressions import F
 from django.utils.translation import activate
 from django.template.defaultfilters import default, slugify, title
@@ -16,14 +16,16 @@ class CourseBaseCategory(models.Model):
     def __str__(self):
         return self.Base_Category_Title
 
+from accounts.models import *
 class Course(models.Model):
+    user = models.ForeignKey(User, on_delete=SET_NULL, null=True)
     Course_Base_Category = models.ForeignKey(CourseBaseCategory, on_delete=CASCADE, default=None)
     course_title = models.CharField(max_length=50)
     course_description = models.TextField(max_length=150, null=True, blank=True)
     course_price = models.PositiveIntegerField(null=False)
     course_discount_price = models.PositiveIntegerField(null=False)
     activate = models.BooleanField(default=False)
-    thumbnail = models.ImageField(upload_to ="Course/Thumbnail")
+    thumbnail = models.ImageField(upload_to ="media/Course/Thumbnail")
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now_add=True)
     materials_link = models.URLField(null=True, blank=True)
@@ -45,9 +47,11 @@ class CourseTags(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.Tags_Title+"|"+self.Course)
+            self.slug = slugify(self.Tags_Title+"-"+self.Course.course_title)
         return super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.Tags_Title
 class Prerequisite(models.Model):
     Course = models.ForeignKey(Course, on_delete=CASCADE, default=None)
     short_description = models.CharField(max_length=50)
@@ -63,8 +67,11 @@ class Lesson(models.Model):
     
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.Lesson_Title+"|"+self.Course)
+            self.slug = slugify(self.Lesson_Title+"-"+self.Course.course_title)
         return super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.Lesson_Title
 
 class Video(models.Model):
     Course = models.ForeignKey(Course, on_delete=CASCADE, default=None)

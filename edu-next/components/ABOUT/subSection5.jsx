@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 export default function SubSection5(){
     return(
         <>
@@ -29,7 +31,7 @@ export default function SubSection5(){
                   <div className="item">
                     <div className="single-intro-wrap">
                       <div className="thumb">
-                        <img src="assets/img/instructor-details.png" alt="img" />
+                       <img src="/assets/img/instructor-details.png" alt="img"  />
                       </div>
                       <div className="wrap-details">
                         <h6>
@@ -42,7 +44,7 @@ export default function SubSection5(){
                   <div className="item">
                     <div className="single-intro-wrap">
                       <div className="thumb">
-                        <img src="assets/img/instructor-details.png" alt="img" />
+                       <img src="/assets/img/instructor-details.png" alt="img"  />
                       </div>
                       <div className="wrap-details">
                         <h6>
@@ -55,7 +57,7 @@ export default function SubSection5(){
                   <div className="item">
                     <div className="single-intro-wrap">
                       <div className="thumb">
-                        <img src="assets/img/instructor-details.png" alt="img" />
+                       <img src="/assets/img/instructor-details.png" alt="img"  />
                       </div>
                       <div className="wrap-details">
                         <h6>
@@ -68,7 +70,7 @@ export default function SubSection5(){
                   <div className="item">
                     <div className="single-intro-wrap">
                       <div className="thumb">
-                        <img src="assets/img/instructor-details.png" alt="img" />
+                       <img src="/assets/img/instructor-details.png" alt="img"  />
                       </div>
                       <div className="wrap-details">
                         <h6>
@@ -81,7 +83,7 @@ export default function SubSection5(){
                   <div className="item">
                     <div className="single-intro-wrap">
                       <div className="thumb">
-                        <img src="assets/img/instructor-details.png" alt="img" />
+                       <img src="/assets/img/instructor-details.png" alt="img"  />
                       </div>
                       <div className="wrap-details">
                         <h6>
