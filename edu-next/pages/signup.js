@@ -37,9 +37,7 @@ export default function Signup() {
       });
 
       await router.push('/login');
-      // console.log(response);
-      // const data = await response.json();
-      // console.log(data);
+       
     } else {
       alert("Password didn't matched!");
     }

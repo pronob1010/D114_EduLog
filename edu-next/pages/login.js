@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
+import jwt_decode from 'jwt-decode';
 
 export default function Signup() {
   const [email, setemail] = useState("");
@@ -11,25 +12,29 @@ export default function Signup() {
     e.preventDefault();
 
     const response = await fetch("http://localhost:8000/api/token/", {
-      credentials: "include",
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify({
         email,
         password,
       })
     })
-    
+    // console.log(response.data);
     const data = await response.json();
+    const token = data.access;
+    const decode_token = jwt_decode(token)
+    const expTime = decode_token.exp;
+    const user_id = decode_token.user_id;
 
-    console.log(data);
+    localStorage.setItem('token', token);
+    localStorage.setItem('userId', user_id);
+    localStorage.setItem('expTime', new Date(expTime*1000));
+
+    console.log(jwt_decode(data.access));
     if (data.refresh) {
       await router.push("/");
     }
-
-    // const data = await response.json();
-    // console.log(data);
-    // }
   };
 
   return (

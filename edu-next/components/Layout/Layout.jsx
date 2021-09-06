@@ -4,7 +4,7 @@ import Footer from './components/Footer/footer';
 import { useEffect } from "react";
 
 export default function Layout({children}){
-
+    // console.log(children)
     return(
         <>
             <Loader />

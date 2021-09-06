@@ -7,9 +7,10 @@ function MyApp({ Component, pageProps }) {
   useEffect( ()=> {
     (
         async () => {
-            const response = await fetch('http://localhost:8000/api/token/refresh/',{
-                credentials: "include",
-                
+          const user = localStorage.getItem('userId');
+          console.log(user);
+            const response = await fetch('http://localhost:8000/api/auth/'+user,{
+                credentials: "include", 
             });
 
             const content = await response.json();
@@ -19,8 +20,8 @@ function MyApp({ Component, pageProps }) {
     )();
 });
   return (    
-  <Layout >
-  <Component {...pageProps} />
+  <Layout>
+  <Component {...pageProps}  />
   </Layout>
   )
 }

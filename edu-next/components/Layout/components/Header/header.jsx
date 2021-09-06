@@ -81,7 +81,7 @@ export default function Header(){
                                     <a className="">Sign Up</a>
                                     </Link>
                                 </li>
-                                <li><a href="#" className="">Logout</a></li>
+                                <li><a>Logout</a></li>
                             </ul>
                         </li>
                         <li className="current-menu-item">
