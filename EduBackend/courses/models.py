@@ -32,13 +32,13 @@ class Course(models.Model):
     course_price = models.PositiveIntegerField(null=False)
     course_discount_price = models.PositiveIntegerField(null=False)
     activate = models.BooleanField(default=False)
-    thumbnail = models.ImageField(upload_to ="media/Course/Thumbnail")
+    thumbnail = models.ImageField(upload_to ="media/Course/Thumbnail", null = True, blank=True)
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now_add=True)
     materials_link = models.URLField(null=True, blank=True)
     course_length = models.CharField(max_length=15, null=True, blank=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
-    students = models.ManyToManyField(User, related_name="students")
+    students = models.ManyToManyField(User, related_name="students", null=True, blank=True)
     
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -62,15 +62,15 @@ class CourseTags(models.Model):
         return self.Tags_Title
 class Prerequisite(models.Model):
     Course = models.ForeignKey(Course, on_delete=CASCADE, default=None, related_name="course_prerequisite")
-    short_description = models.CharField(max_length=50)
+    short_description = models.CharField(max_length=50, null=True)
 
 class WillLearn(models.Model):
     Course = models.ForeignKey(Course, on_delete=CASCADE, related_name="course_willlearn")
-    short_description = models.CharField(max_length=50)
+    short_description = models.CharField(max_length=50, null=True)
 
 class Lesson(models.Model):
     Course = models.ForeignKey(Course, on_delete=CASCADE, default=None, related_name="course_lesson")
-    Lesson_Title = models.CharField(max_length=50)
+    Lesson_Title = models.CharField(max_length=50, null=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
     
     def save(self, *args, **kwargs):

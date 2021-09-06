@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'courses',
     'EduBackend',
     'publicForum',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -44,7 +45,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
 
 ROOT_URLCONF = 'EduBackend.urls'
 
@@ -132,3 +136,17 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     )
 }
+
+
+# SESSION_COOKIE_SAMESITE = None
+SESSION_COOKIE_SAMESITE = "Lax"
+CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+] # If this is used, then not need to use `CORS_ALLOW_ALL_ORIGINS = True`
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    'http://localhost:3000',
+]
+CORS_EXPOSE_HEADERS = ["Content-Type", "X-CSRFToken"]
