@@ -30,7 +30,6 @@ export default function ShortOverview(){
                         <ShortBlock />
                         <ShortBlock />
                         <ShortBlock />
-                         
                     </div>
                 </div>
             </div>

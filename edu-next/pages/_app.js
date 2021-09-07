@@ -1,26 +1,29 @@
 import Layout from '../components/Layout/Layout'
 import '../styles/globals.css'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function MyApp({ Component, pageProps }) {
-
+const [Userdata, setUserdata] = useState('')
+  
   useEffect( ()=> {
     (
         async () => {
           const user = localStorage.getItem('userId');
-          console.log(user);
+          // console.log(user);
             const response = await fetch('http://localhost:8000/api/auth/'+user,{
                 credentials: "include", 
             });
 
             const content = await response.json();
 
-            console.log(content);
+            setUserdata(content);
+            // console.log(Userdata);
         }
     )();
-});
+}, []);
+
   return (    
-  <Layout>
+  <Layout auth = {Userdata}>
   <Component {...pageProps}  />
   </Layout>
   )

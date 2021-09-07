@@ -1,7 +1,43 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function Header(){
+export default function Header({auth}){
+    console.log(auth)
+
+    const logout =()=>{
+        localStorage.clear()
+    }
+
+let menu;
+    if (auth.detail != "Not found."){
+        menu = (
+            <ul className="sub-menu">
+            <li><a href="#">{auth.username}</a>
+                <ul className="sub-menu-2">
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                </ul>
+            </li>
+            <li><a onClick= {logout}>Logout</a></li>
+        </ul>
+        )
+    }
+    else{
+        menu = (
+            <ul className="sub-menu">
+            <li>
+                <Link href="/login">
+                <a className="">Login</a>
+                </Link>
+            </li>
+            <li>
+                <Link href="/signup">
+                <a className="">Sign Up</a>
+                </Link>
+            </li>
+        </ul>
+        )
+    }
+
     return(
         <>
     <header className="navbar-area">
@@ -64,25 +100,7 @@ export default function Header(){
 
                         <li className="menu-item-has-children">
                             <a className=""><i className="fas fa-user-circle"></i></a>
-                            <ul className="sub-menu">
-                                <li><a href="#">Pronob1010</a>
-                                    <ul className="sub-menu-2">
-                                        <li><a href="dashboard.html">Dashboard</a></li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <Link href="/login">
-                                    <a className="">Login</a>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link href="/signup">
-                                    <a className="">Sign Up</a>
-                                    </Link>
-                                </li>
-                                <li><a>Logout</a></li>
-                            </ul>
+                            {menu}
                         </li>
                         <li className="current-menu-item">
                             <a href=" "> </a>

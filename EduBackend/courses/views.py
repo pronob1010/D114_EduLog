@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import query
 from django.shortcuts import render
 from rest_framework import serializers
 from.serializers import CourseSerializer
@@ -12,3 +13,7 @@ class CoueseViewSet(ModelViewSet):
 class PrerequisiteViewSet(ModelViewSet):
     serializer_class = PrerequisiteSerializer
     queryset = Prerequisite.objects.all()
+
+class RatingViewSet(ModelViewSet):
+    serializer_class = RatingSerializer
+    queryset = Rating.objects.all()

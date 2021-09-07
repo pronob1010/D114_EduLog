@@ -28,6 +28,12 @@ class TestSerializer(ModelSerializer):
         model = Test
         fields = "__all__"
 
+
+class RatingSerializer(ModelSerializer):
+    class Meta:
+        model = Rating
+        fields = "__all__"
+
 class LessonSerializer(ModelSerializer):
     video = VideoSerializer(source="lesson_video", many=True, read_only=True)
     test = TestSerializer(source="lesson_test", many=True, read_only=True)
@@ -41,6 +47,7 @@ class CourseSerializer(ModelSerializer):
     willlearn = WillLearnSerializer(source="course_willlearn", many=True, read_only=True)
     lesson = LessonSerializer(source="course_lesson", many=True, read_only=True)
     tags = CourseTagsSerializer(source="course_tags", many=True, read_only=True)
+    rating = RatingSerializer(source = "course_rating", many=True, read_only=True)
     class Meta:
         model = Course
         fields = '__all__'

@@ -109,7 +109,6 @@ class Test(models.Model):
 class Rating(models.Model):
     Course = models.ForeignKey(Course, on_delete=CASCADE, default=None, related_name="course_rating")
     student = models.ForeignKey(User, on_delete=SET_NULL, null=True)
-    
     ratting_list = (
         ('1', '1'), 
         ('2', '2'), 
@@ -118,3 +117,5 @@ class Rating(models.Model):
         ('5', '5'), 
     )
     rating = models.CharField(max_length=15, choices=ratting_list, null=True)
+    comment = models.TextField(max_length=150, null=True, blank= True)
+    block = models.BooleanField(default=False)

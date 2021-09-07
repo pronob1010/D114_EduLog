@@ -18,11 +18,14 @@ Django==3.0.8
 django-autoslug==1.9.8
 django-braces==1.14.0
 django-cleanup==5.2.0
+django-cors-headers==3.8.0
 django-crispy-forms==1.9.1
 Django-Gtts==0.3
 django-heroku==0.3.1
+django-jazzmin==2.4.8
 django-widget-tweaks==1.4.8
 djangorestframework==3.12.4
+djangorestframework-simplejwt==4.8.0
 env==0.1.0
 filelock==3.0.12
 Flask==2.0.1
@@ -58,6 +61,7 @@ pyasn1==0.4.8
 pycodestyle==2.6.0
 pycparser==2.20
 pydivert==2.1.0
+PyJWT==2.1.0
 pylint==2.5.3
 pyOpenSSL==20.0.1
 pyparsing==2.4.7

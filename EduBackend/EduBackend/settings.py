@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'EduBackend',
     'publicForum',
     'corsheaders',
+    'siteinfo',
 ]
 
 MIDDLEWARE = [
