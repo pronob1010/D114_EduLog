@@ -17,7 +17,7 @@ const [Userdata, setUserdata] = useState('')
             const content = await response.json();
 
             setUserdata(content);
-            // console.log(Userdata);
+            console.log(Userdata);
         }
     )();
 }, []);

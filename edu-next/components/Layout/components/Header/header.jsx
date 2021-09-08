@@ -44,8 +44,8 @@ let menu;
         <nav className="navbar navbar-expand-lg">
             <div className="container nav-container">
                 <div className="responsive-mobile-menu">
-                    <button className="menu toggle-btn d-block d-lg-none" data-target="#themefie_main_menu"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                    <button className="menu toggle-btn d-block d-lg-none" dataTarget="#themefie_main_menu"
+                        ariaExpanded="false" ariaLabel="Toggle navigation">
                         <span className="icon-left"></span>
                         <span className="icon-right"></span>
                     </button>
