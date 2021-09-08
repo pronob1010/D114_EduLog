@@ -27,7 +27,7 @@ class Designation(models.Model):
 from accounts.models import *
 class Official_Team(models.Model):
     Member = models.ForeignKey(User, on_delete=CASCADE)
-    Designation = models.CharField(max_length=25, choices=Designation)
+    designation = models.ForeignKey(Designation, on_delete=CASCADE)
 
     def __str__(self):
         return self.Member.username +" | "+self.Designation

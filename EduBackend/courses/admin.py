@@ -30,3 +30,4 @@ class CourseAdmin(admin.ModelAdmin):
     inlines = [PrerequisiteAdmin, CourseTagsAdmin, WillLearnAdmin, LessonAdmin, VideoAdmin, TestAdmin]
 
 admin.site.register(Course, CourseAdmin)
+admin.site.register(CourseEnrollment)

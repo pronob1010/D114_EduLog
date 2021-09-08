@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'publicForum',
     'corsheaders',
     'siteinfo',
+    'payment',
 ]
 
 MIDDLEWARE = [

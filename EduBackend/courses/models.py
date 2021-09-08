@@ -38,8 +38,7 @@ class Course(models.Model):
     materials_link = models.URLField(null=True, blank=True)
     course_length = models.CharField(max_length=15, null=True, blank=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
-    students = models.ManyToManyField(User, related_name="students", null=True, blank=True)
-    
+        
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.course_title+"-"+str(self.id)+"-"+str(self.Course_Base_Category))
@@ -47,6 +46,14 @@ class Course(models.Model):
 
     def __str__(self):
         return self.course_title+" | "+self.Course_Base_Category.Base_Category_Title
+
+class CourseEnrollment(models.Model): 
+    students = models.ManyToManyField(User, related_name="enrolled_student", null=True, blank=True)
+    Course = models.ForeignKey(Course, on_delete=CASCADE, default=None,  related_name="enrolled_course", null=True, blank=True)
+    enrollment_date = models.DateTimeField(auto_now_add=True)
+
+    # def __str__(self):
+    #     return self.students.username + " | "+ self.Course.course_title
 
 class CourseTags(models.Model):
     Course = models.ForeignKey(Course, on_delete=CASCADE, default=None,  related_name="course_tags")
