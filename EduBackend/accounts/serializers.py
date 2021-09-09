@@ -5,7 +5,8 @@ from.models import *
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ('__all__')
+        # fields = ('__all__')
+        exclude = ('id',)
         extra_kwargs = {
             "password" : {"write_only" : True, "style":{"inpute_type":"password"}}
         }

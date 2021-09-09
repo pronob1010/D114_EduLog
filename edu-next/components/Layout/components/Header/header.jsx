@@ -1,15 +1,15 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Header({auth}){
-    console.log(auth)
+    console.log("auth check ", auth)
 
     const logout =()=>{
         localStorage.clear()
     }
 
 let menu;
-    if (auth.detail != "Not found."){
+    if (auth){
         menu = (
             <ul className="sub-menu">
             <li><a href="#">{auth.username}</a>

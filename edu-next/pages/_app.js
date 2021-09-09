@@ -1,32 +1,49 @@
-import Layout from '../components/Layout/Layout'
-import '../styles/globals.css'
-import { useEffect, useState } from 'react';
+import Layout from "../components/Layout/Layout";
+import "../styles/globals.css";
+import {
+  useEffect,
+  useState
+} from "react";
 
-function MyApp({ Component, pageProps }) {
-const [Userdata, setUserdata] = useState('')
-  
-  useEffect( ()=> {
-    (
-        async () => {
-          const user = localStorage.getItem('userId');
-          // console.log(user);
-            const response = await fetch('http://localhost:8000/api/auth/'+user,{
-                credentials: "include", 
-            });
+function MyApp({
+  Component,
+  pageProps
+}) {
+  const [Userdata, setUserdata] = useState("");
 
-            const content = await response.json();
+  useEffect(() => {
+    (async () => {
+      const user = localStorage.getItem("userId");
+      console.log("init user", String(user));
+      if (user) {
+        // console.log("Done");
+        const response = await fetch("http://localhost:8000/api/auth/" + user, {
+          headers: {
+            "Content-Type": "application/json"
+          },
+          credentials: "include",
+        })
 
-            setUserdata(content);
-            console.log(Userdata);
-        }
-    )();
-}, []);
+        const content = await response.json();
 
-  return (    
-  <Layout auth = {Userdata}>
-  <Component {...pageProps}  />
-  </Layout>
-  )
+        setUserdata(content);
+        // console.log(content);
+
+      }
+    })();
+  }, []);
+  console.log("==", Userdata);
+  return ( <
+    Layout auth = {
+      Userdata
+    } >
+    <
+    Component {
+      ...pageProps
+    }
+    /> <
+    /Layout>
+  );
 }
 
-export default MyApp
+export default MyApp;
