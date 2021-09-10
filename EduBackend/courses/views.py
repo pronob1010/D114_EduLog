@@ -17,3 +17,8 @@ class PrerequisiteViewSet(ModelViewSet):
 class RatingViewSet(ModelViewSet):
     serializer_class = RatingSerializer
     queryset = Rating.objects.all()
+
+
+class CourseBaseCategoryViewSet(ModelViewSet):
+    serializer_class = CourseBaseCategorySerializer
+    queryset = CourseBaseCategory.objects.all()

@@ -6,7 +6,7 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         # fields = ('__all__')
-        exclude = ('id',)
+        exclude = ('is_active','is_staff','is_student','is_subadmin','is_superuser','user_permissions','groups')
         extra_kwargs = {
             "password" : {"write_only" : True, "style":{"inpute_type":"password"}}
         }

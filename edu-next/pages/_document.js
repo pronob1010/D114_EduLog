@@ -53,7 +53,6 @@ class MyDocument extends Document {
           <script src="/assets/js/owl.min.js"></script>
           <script src="/assets/js/slick-slider.min.js"></script>
           <script src="/assets/js/wow.min.js"></script>
-
           <script src="/assets/js/main.js"></script>
         </body>
       </Html>

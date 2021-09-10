@@ -41,6 +41,10 @@ class LessonSerializer(ModelSerializer):
         model = Lesson
         fields = "__all__"
 
+class CourseBaseCategorySerializer(ModelSerializer):
+    class Meta:
+        model = CourseBaseCategory
+        fields = '__all__'
 
 class CourseSerializer(ModelSerializer):
     prerequisite = PrerequisiteSerializer(source="course_prerequisite", many=True, read_only=True)
