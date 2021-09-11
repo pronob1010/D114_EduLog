@@ -9,6 +9,7 @@ from . serializers import *
 class CoueseViewSet(ModelViewSet):
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
+    
 
 class PrerequisiteViewSet(ModelViewSet):
     serializer_class = PrerequisiteSerializer
@@ -22,3 +23,5 @@ class RatingViewSet(ModelViewSet):
 class CourseBaseCategoryViewSet(ModelViewSet):
     serializer_class = CourseBaseCategorySerializer
     queryset = CourseBaseCategory.objects.all()
+
+

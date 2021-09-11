@@ -3,23 +3,19 @@ import { useState, useEffect } from 'react';
 
 export default function courseDetaisls(){
     const [CourseDetails, setCourseDetails] = useState([]);
-  const router = useRouter();
-  const course_id = router.query.id;
-  console.log("course_id", course_id);
+    
+  useEffect( async () => {
+    
+    const link = window.location.href; 
+    const id = link.replace("http://localhost:3000/courses/","");
 
-  useEffect(() => {
-    (async () => {
-      const response = await fetch("http://localhost:8000/api/data/course/"+course_id, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
+      const response = await fetch('http://localhost:8000/api/data/course/'+Number(id))
       const content = await response.json();
       setCourseDetails(content);
-    })();
   }, []);
-  console.log(CourseDetails);
+
+//   console.log(CourseDetails);
+
   return(
     <>
     <br></br>
@@ -37,15 +33,12 @@ export default function courseDetaisls(){
                             
                                 {/* <h5><a href="#">{CourseDetails.course_title}</a></h5> */}
                          
-                                 <h5><a href="#">Loading...</a></h5>
-                          
-                           
-                            <p>Learn Python like a Professional Start from the basics and go all the way to creating
-                                your own applications and games</p>
+                                 <h5><a href="#">{CourseDetails.course_title}</a></h5>
+                            <p>{CourseDetails.course_description}</p>
                             <div className="user-area">
                                 <div className="user-details">
                                     <img src="/assets/img/author/1.png" alt="img"/>
-                                    <a href="#">Jessica Jessy</a>
+                                    <a href="#">{CourseDetails.instractor}</a>
                                 </div>
                                 <div className="date ms-auto">
                                     <i className="fa fa-calendar-alt me-2" style={{color:'var(--main-color)'}}></i>Last

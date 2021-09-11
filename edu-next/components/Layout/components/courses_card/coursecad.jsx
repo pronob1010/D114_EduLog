@@ -8,6 +8,7 @@ export default function CourseCard({item}){
   const iid = item.id;
   // console.log(iid);
     const [instractor, setinstractor] = useState([]);
+
     const [category, setcategory] = useState([]);
 
     useEffect( async()=>{
@@ -35,7 +36,7 @@ export default function CourseCard({item}){
       console.log("clicked");
       const theTarget = e.target.attributes.pass.value;
       
-      // router.push('http://localhost:8000/api/data/course/'+`${theTarget}`)
+      router.push('courses/'+`${theTarget}`)
       
     }
 
@@ -50,7 +51,7 @@ export default function CourseCard({item}){
                     </div>
                     <div className="wrap-details">
                       <h6>
-                        <Link href='/courses/[id]' as={`courses/${item.id}`}>
+                        <Link href={`courses/${item.id}`} pram={instractor[1]}>
                           <a onClick={coursedetails} pass={item.id}>{item.course_title}</a>
                         </Link>
                       </h6>

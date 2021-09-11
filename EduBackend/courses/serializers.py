@@ -56,3 +56,4 @@ class CourseSerializer(ModelSerializer):
         model = Course
         fields = '__all__'
 
+
