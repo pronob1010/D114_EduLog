@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import CourseCard from "./../components/Layout/components/courses_card/coursecad";
+import CourseCard from "../components/Layout/components/courses_card/coursecad";
 
 export default function Courses() {
   const [CourseList, setCourseList] = useState([]);
@@ -27,7 +27,6 @@ export default function Courses() {
             <div className="col-md-3 col-5">
               <div className="dmne-sidebar">
                 <div className="widget widget-select-inner">
-                  <h4 className="widget-title">Filter</h4>
                   <ul>
                     <li>
                       <div className="single-form-check form-check">
@@ -452,6 +451,7 @@ export default function Courses() {
             <div className="col-md-9 col-7">
               <div className="row">
                 {CourseList.map((item) => {
+                  //   console.log(item.id)
                   return <CourseCard item={item} key={item.id} />;
                 })}
               </div>

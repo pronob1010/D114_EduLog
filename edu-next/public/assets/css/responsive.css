@@ -160,7 +160,7 @@
     color: var(--heading-color);
   }
   .single-course-wrap .wrap-details .user-area {
-    display: block;
+    display: flex;
   }
   .single-course-wrap .wrap-details .user-area div {
     margin-bottom: 10px;

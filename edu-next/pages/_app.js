@@ -3,11 +3,11 @@ import "../styles/globals.css";
 import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps }) {
-  const [Userdata, setUserdata] = useState("");
+  const [Userdata, setUserdata] = useState();
   const [CoursesbaseCategories, setCoursesbaseCategories] = useState([]);
 
   useEffect(() => {
-    (async () => {
+    ( async () => {
       const user = localStorage.getItem("userId");
       // console.log("init user", String(user));
       if (user) {
@@ -20,9 +20,7 @@ function MyApp({ Component, pageProps }) {
         });
 
         const content = await response.json();
-
         setUserdata(content);
-        // console.log(content);
       }
         const response2 = await fetch("http://localhost:8000/api/data/base-categories/",
         {

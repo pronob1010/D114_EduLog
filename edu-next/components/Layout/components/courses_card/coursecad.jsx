@@ -1,7 +1,12 @@
+import Link from 'next/link';
 import { useState,useEffect } from 'react';
+import { useRouter } from 'next/router';
+
 
 export default function CourseCard({item}){
 
+  const iid = item.id;
+  // console.log(iid);
     const [instractor, setinstractor] = useState([]);
     const [category, setcategory] = useState([]);
 
@@ -13,7 +18,7 @@ export default function CourseCard({item}){
             setinstractor([data.id, data.username]);
         });
 
-        console.log(instractor);
+        // console.log(instractor);
 
         const res = await fetch('http://localhost:8000/api/data/base-categories/'+ item.Course_Base_Category)
         .then(res => res.json())
@@ -23,7 +28,16 @@ export default function CourseCard({item}){
         });
     },[]);
 
-    console.log("category list", category);
+    // console.log("category list", category);
+    const router = useRouter()
+
+    function coursedetails(e){
+      console.log("clicked");
+      const theTarget = e.target.attributes.pass.value;
+      
+      // router.push('http://localhost:8000/api/data/course/'+`${theTarget}`)
+      
+    }
 
     return (
         <div className="col-xl-4 col-md-6">
@@ -36,13 +50,13 @@ export default function CourseCard({item}){
                     </div>
                     <div className="wrap-details">
                       <h6>
-                        <a href="#">
-                        {item.course_title}
-                        </a>
+                        <Link href='/courses/[id]' as={`courses/${item.id}`}>
+                          <a onClick={coursedetails} pass={item.id}>{item.course_title}</a>
+                        </Link>
                       </h6>
                       <div className="user-area">
                         <div className="user-details">
-                          <img src="assets/img/author/1.png" alt="img" />
+                          <img src="assets/img/author/1.png" alt="img"/>
                           <a href="#">{instractor[1]}</a>
                         </div>
                         <div className="user-rating">
@@ -65,16 +79,16 @@ export default function CourseCard({item}){
                             </svg>
                             4.9
                           </span>
-                          (76)
                         </div>
                       </div>
+                     <hr></hr>
                       <div className="price-wrap">
                         <div className="row align-items-center">
-                          <div className="col-6">
+                          <div className="col-3 col-sm-6">
                             <a href="#"><b>{category[1]}</b></a>
                           </div>
-                          <div className="col-6 text-end">
-                            <div className="price">{item.course_price}<b> ৳</b></div>
+                          <div className="col-6 col-sm-6 text-end">
+                            <div className="price">{item.course_price}<span><b>৳</b></span></div>
                           </div>
                         </div>
                       </div>

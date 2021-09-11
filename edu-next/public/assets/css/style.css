@@ -2942,7 +2942,7 @@ ul {
   border-radius: 0 0 8px 8px;
 }
 .single-course-wrap .wrap-details h6 {
-  margin-bottom: 17px;
+  margin-bottom: 0.5rem;
 }
 .single-course-wrap .wrap-details .user-area {
   font-size: 14px;
@@ -2950,7 +2950,7 @@ ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding-bottom: 15px;
+  padding-bottom: 5px;
   border-bottom: 1px solid #f2f2f2;
 }
 .single-course-wrap .wrap-details .user-area .user-details {
@@ -2981,7 +2981,7 @@ ul {
 .single-course-wrap .wrap-details .price-wrap {
   font-size: 14px;
   font-weight: 500;
-  padding-top: 10px;
+  padding-top: 5px;
 }
 .single-course-wrap .wrap-details .date-wrap .price,
 .single-course-wrap .wrap-details .price-wrap .price {
@@ -4552,4 +4552,12 @@ a.showMore-cat.showLess::after {
 .footer-area.style-white .widget_link ul li a,
 .footer-area.style-white .widget-title {
   color: #fff;
+}
+
+hr{
+  margin: 0rem 0;
+  color: inherit;
+  background-color: currentColor;
+  border: 0;
+  opacity: .25;
 }

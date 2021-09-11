@@ -1,12 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 export default function Header({ auth, pram }) {
   // console.log("auth check ", auth)
   // console.log("fgfgfg", pram)
   const router = useRouter();
 
+  // const [auth, setauth] = useState(auth);
 
   const logout = () => {
     console.log("Clicked")
@@ -33,7 +35,8 @@ export default function Header({ auth, pram }) {
         </li>
       </ul>
     );
-  } else {
+  }
+  else {
     menu = (
       <ul className="sub-menu">
         <li>
@@ -69,10 +72,11 @@ export default function Header({ auth, pram }) {
               </button>
             </div>
             <div className="logo">
-              <a className="main-logo" href="index.html">
-                {/*<img src="/assets/img/logo.png"  alt="img"/> */}
+              <Link href="/">
+              <a className="main-logo">
                 <img src="/assets/img/logo.png" alt="img" />
               </a>
+              </Link>
             </div>
             <div className="nav-right-part nav-right-part-mobile">
               <ul>
