@@ -2,14 +2,22 @@ from django.db import models
 from django.db.models import query
 from django.shortcuts import render
 from rest_framework import serializers
-from.serializers import CourseSerializer
+from rest_framework.generics import ListAPIView, RetrieveAPIView
+from.serializers import *
 from rest_framework.viewsets import ModelViewSet
 
 from . serializers import *
 class CoueseViewSet(ModelViewSet):
     serializer_class = CourseSerializer
     queryset = Course.objects.all()
-    
+
+# class CoueseListViewSet(ModelViewSet):
+#     serializer_class = CourseListSerializer
+#     queryset = Course.objects.all()
+
+# class CoueseDetailsViewSet(ModelViewSet):
+#     serializer_class = CourseDetailsSerializer
+#     queryset = Course.objects.all()
 
 class PrerequisiteViewSet(ModelViewSet):
     serializer_class = PrerequisiteSerializer

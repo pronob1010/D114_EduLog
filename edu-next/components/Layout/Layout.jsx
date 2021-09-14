@@ -3,12 +3,12 @@ import Loader from './components/preloder';
 import Footer from './components/Footer/footer';
 import { useEffect } from "react";
 
-export default function Layout({children, auth, baseCategories}){
-    // console.log(children)
+export default function Layout({children}){
+    
     return(
         <>
             <Loader />
-            <Header auth={auth} pram={baseCategories} />
+            <Header/>
             {children}
             <Footer />
         </>

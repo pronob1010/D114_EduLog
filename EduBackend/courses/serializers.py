@@ -1,5 +1,5 @@
 from django.db.models import fields
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, HyperlinkedModelSerializer, HyperlinkedIdentityField
 from . models import *
 
 
@@ -45,15 +45,31 @@ class CourseBaseCategorySerializer(ModelSerializer):
         model = CourseBaseCategory
         fields = '__all__'
 
+
+# from accounts.serializers import UserSerializer
 class CourseSerializer(ModelSerializer):
+    # user = UserSerializer(source="instractor", many=True, read_only=True)
     prerequisite = PrerequisiteSerializer(source="course_prerequisite", many=True, read_only=True)
     willlearn = WillLearnSerializer(source="course_willlearn", many=True, read_only=True)
     lesson = LessonSerializer(source="course_lesson", many=True, read_only=True)
     tags = CourseTagsSerializer(source="course_tags", many=True, read_only=True)
     rating = RatingSerializer(source = "course_rating", many=True, read_only=True)
-    
     class Meta:
         model = Course
         fields = '__all__'
 
+# class CourseListSerializer(ModelSerializer):
+#     rating = RatingSerializer(source="course_rating", many=True, read_only=True)
+#     class Meta:
+#         model = Course
+#         fields = '__all__'
 
+# class CourseDetailsSerializer(ModelSerializer):
+#     prerequisite = PrerequisiteSerializer(source="course_prerequisite", many=True, read_only=True)
+#     willlearn = WillLearnSerializer(source="course_willlearn", many=True, read_only=True)
+#     lesson = LessonSerializer(source="course_lesson", many=True, read_only=True)
+#     tags = CourseTagsSerializer(source="course_tags", many=True, read_only=True)
+#     rating = RatingSerializer(source = "course_rating", many=True, read_only=True)
+#     class Meta:
+#         model = Course
+#         fields = '__all__'

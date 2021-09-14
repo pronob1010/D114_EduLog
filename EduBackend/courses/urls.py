@@ -6,6 +6,8 @@ from . views import *
 
 router = DefaultRouter()
 router.register("course", CoueseViewSet, basename='course')
+# router.register("course-list", CoueseListViewSet, basename='course_list')
+# router.register("course-details", CoueseDetailsViewSet, basename='course_details')
 router.register("base-categories", CourseBaseCategoryViewSet, basename='baseCategories')
 
 urlpatterns = [

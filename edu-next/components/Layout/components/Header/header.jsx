@@ -2,10 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { useSelector } from "react-redux";
 
-export default function Header({ auth, pram }) {
-  // console.log("auth check ", auth)
-  // console.log("fgfgfg", pram)
+export default function Header() {
+  const auth='';
+  const pram= useSelector(state => state.course.Categories)
+
   const router = useRouter();
 
   // const [auth, setauth] = useState(auth);
@@ -101,7 +103,7 @@ export default function Header({ auth, pram }) {
                         <a>Courses</a>
                       </Link>
                   <ul className="sub-menu" id="demo">
-                    
+
                     {pram.map((item) => {
                       return (
                         <li>

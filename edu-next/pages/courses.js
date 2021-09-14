@@ -1,23 +1,13 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import CourseCard from "./../components/Layout/components/courses_card/coursecad";
+import { useSelector } from 'react-redux';
+
 
 export default function Courses() {
-  const [CourseList, setCourseList] = useState([]);
 
-  useEffect(() => {
-    (async () => {
-      const response = await fetch("http://localhost:8000/api/data/course/", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
-      const content = await response.json();
-      setCourseList(content);
-    })();
-  }, []);
-
+  const CourseList = useSelector(state => state.course.CourseList)
+  
   return (
     <>
       <br></br>

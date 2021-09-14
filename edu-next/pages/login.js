@@ -23,7 +23,7 @@ export default function Signup() {
     // console.log(response.data);
     const data = await response.json();
     const token = data.access;
-    const decode_token = jwt_decode(token)
+    const decode_token = jwt_decode(token);
     const expTime = decode_token.exp;
     const user_id = decode_token.user_id;
 
@@ -33,7 +33,6 @@ export default function Signup() {
     console.log(jwt_decode(data.access));
 
   await router.push("/");
-    
   };
 
   return (

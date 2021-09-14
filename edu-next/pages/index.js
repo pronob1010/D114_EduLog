@@ -4,8 +4,13 @@ import CoursesList from "../components/HOME/MOSTTRENDING/CoursesList/courseslist
 import ShortOverview from "./../components/HOME/CourseOverviewSection/Section1/shortoverview";
 import Testimonial from "./../components/HOME/Testimonial/testimonial";
 import ClientItem from "./../components/HOME/Client-area/all-client-item";
+import { useSelector } from 'react-redux';
 
 export default function HomeMain() {
+
+  const data = useSelector(state => state)
+  console.log(data.user)
+
   return (
     <>
       <br></br>
