@@ -3,18 +3,28 @@ import { useState, useEffect } from 'react';
 
 export default function courseDetaisls(){
     const [CourseDetails, setCourseDetails] = useState([]);
-    
+    const [instructor, setinstructor] = useState([]);
+
   useEffect( async () => {
-    
     const link = window.location.href; 
     const id = link.replace("http://localhost:3000/courses/","");
 
-      const response = await fetch('http://localhost:8000/api/data/course/'+Number(id))
-      const content = await response.json();
-      setCourseDetails(content);
-  }, []);
+    const response = await fetch('http://localhost:8000/api/data/course/'+Number(id))
+    const content = await response.json();
+    setCourseDetails(content);
 
-//   console.log(CourseDetails);
+    const response2 = await fetch('http://localhost:8000/api/auth/'+content.instractor)
+    .then(res => res.json())
+    .then(data => {
+        // console.log(data.id, data.username);
+        setinstructor([data.id, data.username]);
+    });
+
+
+}, []);
+
+const date = new Date(CourseDetails.update_date).toUTCString();
+console.log("block ",date);
 
   return(
     <>
@@ -35,26 +45,17 @@ export default function courseDetaisls(){
                          
                                  <h5><a href="#">{CourseDetails.course_title}</a></h5>
                             <p>{CourseDetails.course_description}</p>
+                            <hr></hr>
                             <div className="user-area">
                                 <div className="user-details">
                                     <img src="/assets/img/author/1.png" alt="img"/>
-                                    <a href="#">{CourseDetails.instractor}</a>
+                                    <a href="#">{instructor[1]}</a>
                                 </div>
                                 <div className="date ms-auto">
-                                    <i className="fa fa-calendar-alt me-2" style={{color:'var(--main-color)'}}></i>Last
-                                    updated 9/2020
+                                    <i className="fa fa-calendar-alt me-2" style={{color:'var(--main-color)'}}></i>{new Date(CourseDetails.update_date).toUTCString().slice(4,17)}
                                 </div>
                                 <div className="ms-auto">
-                                    <i className="fa fa-user me-2" style={{color:'var(--main-color)'}}></i>5k already enrolled
-                                </div>
-                                <div className="user-rating">
-                                    <span>
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star"></i>
-                                        <i className="fa fa-star-half-alt"></i>
-                                        4.9</span>(76)
+                                    <i className="fa fa-user me-2" style={{color:'var(--main-color)'}}></i>Enrolled 5k 
                                 </div>
                             </div>
                             <div className="buying-wrap d-flex align-items-center">
@@ -378,12 +379,12 @@ export default function courseDetaisls(){
                 </div>
                 <div className="col-lg-4 sidebar-area">
                     <div className="widget widget-accordion-inner">
-                        <h5 className="widget-title border-0">Course Syllabus</h5>
+                        <h5 className="widget-title border-0">Course Lessons</h5>
                         <div className="accordion" id="accordion-0">
                             <div className="accordion-item">
                                 <h2 className="accordion-header" id="heading-1">
                                     <button className="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapse-1">
+                                        data-bs-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
                                         Introduction
                                     </button>
                                 </h2>

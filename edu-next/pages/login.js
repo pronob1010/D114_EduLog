@@ -30,11 +30,10 @@ export default function Signup() {
     localStorage.setItem('token', token);
     localStorage.setItem('userId', user_id);
     localStorage.setItem('expTime', new Date(expTime*1000));
-
     console.log(jwt_decode(data.access));
-    if (data.refresh) {
-      await router.push("/");
-    }
+
+  await router.push("/");
+    
   };
 
   return (

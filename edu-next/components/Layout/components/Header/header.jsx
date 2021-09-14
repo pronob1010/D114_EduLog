@@ -13,6 +13,7 @@ export default function Header({ auth, pram }) {
   const logout = () => {
     console.log("Clicked")
     localStorage.clear();
+    auth = None;
     // router.push('/');
   };
 

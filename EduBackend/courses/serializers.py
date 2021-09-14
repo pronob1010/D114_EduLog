@@ -28,7 +28,6 @@ class TestSerializer(ModelSerializer):
         model = Test
         fields = "__all__"
 
-
 class RatingSerializer(ModelSerializer):
     class Meta:
         model = Rating
@@ -52,6 +51,7 @@ class CourseSerializer(ModelSerializer):
     lesson = LessonSerializer(source="course_lesson", many=True, read_only=True)
     tags = CourseTagsSerializer(source="course_tags", many=True, read_only=True)
     rating = RatingSerializer(source = "course_rating", many=True, read_only=True)
+    
     class Meta:
         model = Course
         fields = '__all__'

@@ -3225,6 +3225,7 @@ a.showMore-cat.showLess::after {
 }
 .courses-details-area .single-course-wrap .wrap-details .user-area {
   border: 0;
+  padding-top: 1rem;
   padding-bottom: 48px;
 }
 
