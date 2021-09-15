@@ -1,4 +1,11 @@
+import { useSelector } from "react-redux";
+
 export default function Profile() {
+  const id = useSelector(state => state.user.log.userId);
+  
+  const profile = useSelector(state => state.user.Userdata.find(ele => ele.id === Number(id)));
+  console.log("profile ", profile);
+
   return (
     <>
       <br></br>
@@ -17,7 +24,7 @@ export default function Profile() {
                     </a>
                     <span>
                       Hello,
-                      <h5>Ramjan Ali Anik</h5>
+                      <h5>{profile.firstname}</h5>
                     </span>
                   </span>
                 </div>
@@ -48,26 +55,22 @@ export default function Profile() {
                     </a>
                     <ul>
                       <li>
-                        <span>Registration Date</span>Faiday, 20 Dec 2020, 10:00
-                        AM
+                        <span>Registration Date</span>{profile.registerd}
                       </li>
                       <li>
-                        <span>First Name</span>Ramjan Ali
+                        <span>First Name</span>{profile.firstname}
                       </li>
                       <li>
-                        <span>Last Name</span>Anik
+                        <span>Last Name</span>{profile.lastname}
                       </li>
                       <li>
-                        <span>Uasername</span>ramjanalianik
+                        <span>Uasername</span>{profile.username}
                       </li>
                       <li>
-                        <span>Email</span>demo@email.com
+                        <span>Email</span>{profile.email}
                       </li>
                       <li>
                         <span>Phone Number</span>+123 12 24 567
-                      </li>
-                      <li>
-                        <span>Skil/Occupation</span>UX Designer & Web Developer
                       </li>
                       <li>
                         <span>Bio</span>Lorem ipsum dolor sit amet, consectetur

@@ -13,6 +13,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_teacher = models.BooleanField(default=False)
     is_subadmin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    registerd = models.DateField(null=True, auto_now_add=True)
 
     objects = UserProfileManager()
 

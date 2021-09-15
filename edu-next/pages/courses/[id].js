@@ -1,17 +1,24 @@
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 export default function courseDetaisls() {
+  
   const [CourseDetails, setCourseDetails] = useState([]);
   const courselist = useSelector((state) => state.course.CourseList);
+  
 
   useEffect(async () => {
     const link = window.location.href;
     const id = link.replace("http://localhost:3000/courses/", "");
 
     const content = courselist.find((courselist) => courselist.id == id);
-
     setCourseDetails(content);
   }, []);
+
+  const users = useSelector(state => state.user.Userdata);
+  const instractor = users.find(ele => ele.id === Number(CourseDetails.instractor))
+  
+  console.log(instractor);
 
   const date = new Date(CourseDetails.update_date).toUTCString();
 
@@ -39,8 +46,7 @@ export default function courseDetaisls() {
                   <div className="user-area">
                     <div className="user-details">
                       <img src="/assets/img/author/1.png" alt="img" />
-                      {/* <a href="#">{instructor[1]}</a> */}
-                      <a href="#"> 1 </a>
+                      <a href="#"> {CourseDetails.instractor} </a>
                     </div>
                     <div className="date ms-auto">
                       <i

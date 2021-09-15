@@ -6,7 +6,8 @@ const Userdata = [
         "username": "admin",
         "firstname": "Admin",
         "lastname": "Admin",
-        "is_teacher": false
+        "is_teacher": false,
+        "registerd": "2021-09-16"
     },
     {
         "id": 2,
@@ -15,7 +16,8 @@ const Userdata = [
         "username": "pronob1010",
         "firstname": "Pronob",
         "lastname": "Mozumder",
-        "is_teacher": false
+        "is_teacher": false,
+        "registerd": "2021-09-16"
     },
     {
         "id": 3,
@@ -24,7 +26,8 @@ const Userdata = [
         "username": "joymozumder",
         "firstname": "Joy",
         "lastname": "Mozumder",
-        "is_teacher": false
+        "is_teacher": false,
+        "registerd": "2021-09-16"
     },
     {
         "id": 4,
@@ -33,7 +36,8 @@ const Userdata = [
         "username": "pronob1010",
         "firstname": "Pronob",
         "lastname": "Mozumder",
-        "is_teacher": false
+        "is_teacher": false,
+        "registerd": "2021-09-16"
     },
     {
         "id": 5,
@@ -42,7 +46,8 @@ const Userdata = [
         "username": "abcdxyx",
         "firstname": "abcd",
         "lastname": "xyz",
-        "is_teacher": false
+        "is_teacher": false,
+        "registerd": "2021-09-16"
     },
     {
         "id": 6,
@@ -51,7 +56,8 @@ const Userdata = [
         "username": "alamin1010",
         "firstname": "alamin",
         "lastname": "korno",
-        "is_teacher": false
+        "is_teacher": false,
+        "registerd": "2021-09-16"
     },
     {
         "id": 7,
@@ -60,8 +66,10 @@ const Userdata = [
         "username": "joy1010",
         "firstname": "joy",
         "lastname": "Mozumder",
-        "is_teacher": false
+        "is_teacher": false,
+        "registerd": "2021-09-16"
     }
 ]
+
 
 export default Userdata;

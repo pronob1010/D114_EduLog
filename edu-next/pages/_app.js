@@ -1,5 +1,4 @@
 import Layout from "../components/Layout/Layout";
-import "../styles/globals.css";
 import { Provider, useDispatch } from 'react-redux';
 import myStore from "./redux/store";
 
