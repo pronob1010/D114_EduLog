@@ -9,7 +9,7 @@ from rest_framework.viewsets import ModelViewSet
 from . serializers import *
 class CoueseViewSet(ModelViewSet):
     serializer_class = CourseSerializer
-    queryset = Course.objects.all()
+    queryset = Course.objects.all() 
 
 # class CoueseListViewSet(ModelViewSet):
 #     serializer_class = CourseListSerializer

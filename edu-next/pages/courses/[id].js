@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import LessonSection from "./../../components/course_details/LessonSection";
 
 export default function courseDetaisls() {
-  
   const [CourseDetails, setCourseDetails] = useState([]);
   const courselist = useSelector((state) => state.course.CourseList);
-  
 
   useEffect(async () => {
     const link = window.location.href;
@@ -15,12 +14,24 @@ export default function courseDetaisls() {
     setCourseDetails(content);
   }, []);
 
-  const users = useSelector(state => state.user.Userdata);
-  const instractor = users.find(ele => ele.id === Number(CourseDetails.instractor))
-  
-  console.log(instractor);
+  const users = useSelector((state) => state.user.Userdata);
+  const instractor = users.find(
+    (ele) => ele.id === Number(CourseDetails.instractor)
+  );
 
   const date = new Date(CourseDetails.update_date).toUTCString();
+
+
+  var lessons = CourseDetails.lesson;
+  console.log(lessons);
+
+  let lessonList;
+
+  if (lessons) {
+    lessonList = lessons.map((item, i) => { 
+            return <LessonSection data={item} key={i} />
+    })
+  }
 
   return (
     <>
@@ -331,6 +342,7 @@ export default function courseDetaisls() {
                             </div>
                           </div>
                         </div>
+
                         <div className="accordion-item">
                           <h2 className="accordion-header" id="heading-2">
                             <button
@@ -588,179 +600,9 @@ export default function courseDetaisls() {
               <div className="widget widget-accordion-inner">
                 <h5 className="widget-title border-0">Course Lessons</h5>
                 <div className="accordion" id="accordion-0">
-                  <div className="accordion-item">
-                    <h2 className="accordion-header" id="heading-1">
-                      <button
-                        className="accordion-button"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapse-1"
-                        aria-expanded="true"
-                        aria-controls="collapse-1"
-                      >
-                        Introduction
-                      </button>
-                    </h2>
-                    <div
-                      id="collapse-1"
-                      className="accordion-collapse collapse show"
-                      aria-labelledby="heading-1"
-                      data-bs-parent="#accordion-0"
-                    >
-                      <div className="accordion-body">
-                        <ul>
-                          <li>
-                            <a className="play-btn" href="#">
-                              <i className="fa fa-play"></i>
-                            </a>
-                            <span>
-                              <p>Welcome to strategic thinking</p>
-                              <span>1m 24s</span>
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="accordion-item">
-                    <h2 className="accordion-header" id="headingTwo">
-                      <button
-                        className="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseTwo"
-                        aria-expanded="false"
-                        aria-controls="collapseTwo"
-                      >
-                        1. Setting the Stage for Strategic Thinking
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseTwo"
-                      className="accordion-collapse collapse"
-                      aria-labelledby="headingTwo"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div className="accordion-body">
-                        <ul>
-                          <li>
-                            <i className="fa fa-lock"></i>
-                            <span>
-                              <p>Embrace the strategic thinking mindset</p>
-                              <span>1m 24s</span>
-                            </span>
-                          </li>
-                          <li>
-                            <i className="fa fa-lock"></i>
-                            <span>
-                              <p>Strategy: Not just for corporations</p>
-                              <span>1m 24s</span>
-                            </span>
-                          </li>
-                          <li>
-                            <i className="fa fa-lock"></i>
-                            <span>
-                              <p>The sequence of strategy</p>
-                              <span>1m 24s</span>
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="accordion-item">
-                    <h2 className="accordion-header" id="headingThree">
-                      <button
-                        className="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseThree"
-                        aria-expanded="false"
-                        aria-controls="collapseThree"
-                      >
-                        2. Developing Your Strategic Thinking
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseThree"
-                      className="accordion-collapse collapse"
-                      aria-labelledby="headingThree"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div className="accordion-body">
-                        <ul>
-                          <li>
-                            <i className="fa fa-lock"></i>
-                            <span>
-                              <p>Embrace the strategic thinking mindset</p>
-                              <span>1m 24s</span>
-                            </span>
-                          </li>
-                          <li>
-                            <i className="fa fa-lock"></i>
-                            <span>
-                              <p>Strategy: Not just for corporations</p>
-                              <span>1m 24s</span>
-                            </span>
-                          </li>
-                          <li>
-                            <i className="fa fa-lock"></i>
-                            <span>
-                              <p>The sequence of strategy</p>
-                              <span>1m 24s</span>
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
 
-                  <div className="accordion-item">
-                    <h2 className="accordion-header" id="headingFive">
-                      <button
-                        className="accordion-button collapsed"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseFive"
-                        aria-expanded="false"
-                        aria-controls="collapseFive"
-                      >
-                        4. Collaborating, Sharing, and Exporting
-                      </button>
-                    </h2>
-                    <div
-                      id="collapseFive"
-                      className="accordion-collapse collapse"
-                      aria-labelledby="headingFive"
-                      data-bs-parent="#accordionExample"
-                    >
-                      <div className="accordion-body">
-                        <ul>
-                          <li>
-                            <i className="fa fa-lock"></i>
-                            <span>
-                              <p>Embrace the strategic thinking mindset</p>
-                              <span>1m 24s</span>
-                            </span>
-                          </li>
-                          <li>
-                            <i className="fa fa-lock"></i>
-                            <span>
-                              <p>Strategy: Not just for corporations</p>
-                              <span>1m 24s</span>
-                            </span>
-                          </li>
-                          <li>
-                            <i className="fa fa-lock"></i>
-                            <span>
-                              <p>The sequence of strategy</p>
-                              <span>1m 24s</span>
-                            </span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
+                {lessonList}
+
                 </div>
               </div>
               <div className="widget widget-course-details mb-0">

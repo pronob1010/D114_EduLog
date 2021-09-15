@@ -48,7 +48,6 @@ class CourseBaseCategorySerializer(ModelSerializer):
 
 # from accounts.serializers import UserSerializer
 class CourseSerializer(ModelSerializer):
-    # user = UserSerializer(source="instractor", many=True, read_only=True)
     prerequisite = PrerequisiteSerializer(source="course_prerequisite", many=True, read_only=True)
     willlearn = WillLearnSerializer(source="course_willlearn", many=True, read_only=True)
     lesson = LessonSerializer(source="course_lesson", many=True, read_only=True)
