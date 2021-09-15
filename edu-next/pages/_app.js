@@ -1,7 +1,6 @@
 import Layout from "../components/Layout/Layout";
 import "../styles/globals.css";
-import { useEffect, useState } from "react";
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import myStore from "./redux/store";
 
 

@@ -1,39 +1,42 @@
-import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../../../../pages/redux/actions/login";
 export default function Header() {
-  const auth='';
-  const pram= useSelector(state => state.course.Categories)
 
-  const router = useRouter();
+  const dispatch = useDispatch();
 
-  // const [auth, setauth] = useState(auth);
+  const authID=useSelector(state => state.user.log.userId);
+  const auth= useSelector(state => state.user.Userdata.find( ele => ele.id === Number(authID)));
 
-  const logout = () => {
-    console.log("Clicked")
+  const logoutHandel = () => 
+  {
+    console.log("")
+    dispatch(logout())
     localStorage.clear();
-    auth = None;
-    // router.push('/');
   };
 
+  const categories_List= useSelector(state => state.course.Categories)
+
   let menu;
+
   if (auth) {
     menu = (
       <ul className="sub-menu">
         <li>
-          <a href="#">{auth.username}</a>
+          <Link href="/profile">
+          <a>{auth.username}</a>
+          </Link>
           <ul className="sub-menu-2">
             <li>
-              <a href="dashboard.html">Dashboard</a>
+            <Link href="user-dashboard">
+              <a>Dashboard</a>
+            </Link>
             </li>
           </ul>
         </li>
         <li>
           <Link href="/">
-          <a onClick={logout}>Logout</a>
+          <a onClick={logoutHandel}>Logout</a>
           </Link>
         </li>
       </ul>
@@ -56,7 +59,7 @@ export default function Header() {
     );
   }
 
-  // <li><a href="">{item.Base_Category_Title}</a></li>
+ 
 
   return (
     <>
@@ -104,7 +107,7 @@ export default function Header() {
                       </Link>
                   <ul className="sub-menu" id="demo">
 
-                    {pram.map((item) => {
+                    {categories_List.map((item) => {
                       return (
                         <li>
                           <a href="">{item.Base_Category_Title}</a>

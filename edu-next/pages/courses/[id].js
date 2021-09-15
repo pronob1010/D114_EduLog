@@ -1,5 +1,3 @@
-import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 export default function courseDetaisls() {
@@ -11,17 +9,9 @@ export default function courseDetaisls() {
     const id = link.replace("http://localhost:3000/courses/", "");
 
     const content = courselist.find((courselist) => courselist.id == id);
-    // console.log(content);
+
     setCourseDetails(content);
   }, []);
-
-    // const link = global;
-    // console.log(link.location.href);
-
-    // const id = link.replace("http://localhost:3000/courses/", "");
-
-    // const CourseDetails = courselist.find((courselist) => courselist.id == id);
-    // console.log(CourseDetails);
 
   const date = new Date(CourseDetails.update_date).toUTCString();
 
@@ -41,8 +31,6 @@ export default function courseDetaisls() {
                   <img src="/assets/img/course/video.png" alt="img" />
                 </div>
                 <div className="wrap-details">
-                  {/* <h5><a href="#">{CourseDetails.course_title}</a></h5> */}
-
                   <h5>
                     <a href="#">{CourseDetails.course_title}</a>
                   </h5>

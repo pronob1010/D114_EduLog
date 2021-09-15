@@ -1,8 +1,19 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import jwt_decode from 'jwt-decode';
+import { useSelector, useDispatch} from 'react-redux';
+
+import { login } from "./redux/actions/login";
 
 export default function Signup() {
+
+  const dispatch = useDispatch();
+
+  const onclickhendeler =()=>{
+    dispatch(login());
+  }
+
+
   const [email, setemail] = useState("");
   const [password, setpassword] = useState("");
 
@@ -22,18 +33,21 @@ export default function Signup() {
     })
     // console.log(response.data);
     const data = await response.json();
+
     const token = data.access;
     const decode_token = jwt_decode(token);
+
     const expTime = decode_token.exp;
     const user_id = decode_token.user_id;
 
     localStorage.setItem('token', token);
     localStorage.setItem('userId', user_id);
     localStorage.setItem('expTime', new Date(expTime*1000));
-    console.log(jwt_decode(data.access));
+    // console.log(jwt_decode(data.access));
 
   await router.push("/");
   };
+
 
   return (
     <section className="zoom-courses-area pd-top-135 pd-bottom-35 shadow">
@@ -47,7 +61,7 @@ export default function Signup() {
                 onSubmit={handelSubmit}
               >
                 <div className="single-input-wrap">
-                  <label for="email">
+                  <label htmlFor="email">
                     Email<sup>*</sup>
                   </label>
 
@@ -61,7 +75,7 @@ export default function Signup() {
                   />
                 </div>
                 <div className="single-input-wrap">
-                  <label for="password">
+                  <label htmlFor="password">
                     Password<sup>*</sup>
                   </label>
 
@@ -77,7 +91,7 @@ export default function Signup() {
 
                 <div className="row justify-content-center">
                   <div className="col-3">
-                    <button type="submit" className="btn-sm btn-base w-100">
+                    <button type="submit" className="btn-sm btn-base w-100" onClick = {onclickhendeler}>
                       Login
                     </button>
                   </div>
