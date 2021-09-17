@@ -38,7 +38,7 @@ const CourseList = [
                 video: [{
                         id: 6,
                         Video_Title: "Title 1 for video 1 Lesson 1",
-                        Video_URL: "https://youtu.be/XxLQ1g0fAzM",
+                        Video_URL: "https://www.youtube.com/embed/NnothCewIYQ",
                         is_Preview: true,
                         slug: "title-1-for-video-1-lesson-1-lesson-1-bangla",
                         Course: 6,
@@ -47,7 +47,7 @@ const CourseList = [
                     {
                         id: 7,
                         Video_Title: "Title 2 for video 2 Lesson 1",
-                        Video_URL: "https://youtu.be/XxLQ1g0fAzM",
+                        Video_URL: "https://www.youtube.com/embed/8y_0i2_3ijs",
                         is_Preview: false,
                         slug: "title-2-for-video-2-lesson-1-lesson-1-bangla",
                         Course: 6,

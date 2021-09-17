@@ -2,10 +2,13 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import LessonSection from "./../../components/course_details/LessonSection";
 import Alert from './../../components/alert/alert';
+import Iframe from './../../components/course_details/iframe_block';
+import myStore from "../redux/store";
 
 export default function courseDetaisls() {
   const [CourseDetails, setCourseDetails] = useState([]);
   const courselist = useSelector((state) => state.course.CourseList);
+
 
   useEffect(async () => {
     const link = window.location.href;
@@ -15,16 +18,10 @@ export default function courseDetaisls() {
     setCourseDetails(content);
   }, []);
 
-  // const users = useSelector((state) => state.user.Userdata);
-  // const instractor = users.find(
-  //   (ele) => ele.id === Number(CourseDetails.instractor)
-  // );
-
   const date = new Date(CourseDetails.update_date).toUTCString();
 
   var lessons = CourseDetails.lesson;
   console.log(lessons);
-
   let lessonList;
 
   if (lessons) {
@@ -32,8 +29,11 @@ export default function courseDetaisls() {
       return <LessonSection data={item} key={i} />;
     });
   }
+
 const logedUser = useSelector((state) => state.user.log.userId);
+
 let alerText;
+
   const enrollHandeler = () => {
     if (CourseDetails.course_price) {
       console.log(CourseDetails.id);
@@ -44,19 +44,25 @@ let alerText;
     }
   };
 
-  const v_link_data = useSelector(state => state.course.cliked.vlink)
-  console.log("details page ", v_link_data);
+  const v_link_data = useSelector(state => state.course.cliked.vlink);
 
   let ifram;
+  let def_link = "https://www.youtube.com/embed/2hwbZIjqJg4";
 
-  if(v_link_data){
-    ifram =(<iframe width="750" height="418" src="https://www.youtube.com/embed/vdAI-oR-cyw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>)    
-  }
-  else{
-    ifram =(<iframe width="750" height="418" src="https://www.youtube.com/embed/2hwbZIjqJg4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>)    
+  let v_state;
 
-  }
+  v_state = v_link_data;
+  if (v_state){
+  console.log("Updated v_state ", v_state);
+}
 
+    if(v_state){
+      ifram = <Iframe link = {v_state}/>
+    }
+    else{
+      ifram = <Iframe link = {def_link} />  
+    }
+    
   return (
     <>
       <br></br>
@@ -68,9 +74,9 @@ let alerText;
           <div className="row">
             <div className="col-lg-8">
               <div className="single-course-wrap mb-0">
-                <div className="thumb">
+                
                   {ifram}
-                </div>
+                
                 <div className="wrap-details">
                   <h5>
                     <a href="#">{CourseDetails.course_title}</a>

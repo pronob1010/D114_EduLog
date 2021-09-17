@@ -11,8 +11,13 @@ const initialState = {
 export const courseReducer = (state = initialState, action) => {
     switch(action.type){
         case 'PLAY_VIDEO':{
-            console.log("Play Video")
-            return state.cliked.vlink = action.value;
+            console.log("Play Video", action.value);
+            if (action.value){
+                state.cliked.vlink = action.value;
+            }
+
+            console.log("new state :", state.cliked.vlink);
+            return state;
     }
     default: return state; 
 }

@@ -16,6 +16,18 @@ export default function Header() {
   };
 
   const categories_List= useSelector(state => state.course.Categories)
+  let cat_list;
+  if (categories_List){
+    cat_list= (
+      categories_List.map((item) => {
+      return (
+        <li>
+          <a href="">{item.Base_Category_Title}</a>
+        </li>
+      );
+    })
+    )
+  }
 
   let menu;
 
@@ -106,14 +118,8 @@ export default function Header() {
                         <a>Courses</a>
                       </Link>
                   <ul className="sub-menu" id="demo">
-
-                    {categories_List.map((item) => {
-                      return (
-                        <li>
-                          <a href="">{item.Base_Category_Title}</a>
-                        </li>
-                      );
-                    })}
+                    {cat_list}
+                    
                   </ul>
                 </li>
                 <li className="current-menu-item">
