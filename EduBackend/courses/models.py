@@ -48,7 +48,7 @@ class Course(models.Model):
         return self.course_title+" | "+self.Course_Base_Category.Base_Category_Title
 
 
-class CourseEnrollment(models.Model): 
+class CourseEnrollment(models.Model):   
     students = models.ManyToManyField(User, related_name="enrolled_student", null=True, blank=True)
     Course = models.ForeignKey(Course, on_delete=CASCADE, default=None,  related_name="enrolled_course", null=True, blank=True)
     enrollment_date = models.DateTimeField(auto_now_add=True)

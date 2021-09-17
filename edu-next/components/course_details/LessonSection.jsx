@@ -9,7 +9,7 @@ export default function LessonSection({ data }) {
     });
   }
   let slug = data.slug;
-  let hslug = '#'+data.slug;
+  let hslug = "#" + data.slug;
   return (
     <div className="accordion-item">
       <h2 className="accordion-header" id="headingTwo">

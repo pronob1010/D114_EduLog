@@ -1,4 +1,5 @@
 from django.db.models import fields
+from rest_framework.relations import PrimaryKeyRelatedField, RelatedField
 from rest_framework.serializers import ModelSerializer, HyperlinkedModelSerializer, HyperlinkedIdentityField
 from . models import *
 
@@ -57,18 +58,3 @@ class CourseSerializer(ModelSerializer):
         model = Course
         fields = '__all__'
 
-# class CourseListSerializer(ModelSerializer):
-#     rating = RatingSerializer(source="course_rating", many=True, read_only=True)
-#     class Meta:
-#         model = Course
-#         fields = '__all__'
-
-# class CourseDetailsSerializer(ModelSerializer):
-#     prerequisite = PrerequisiteSerializer(source="course_prerequisite", many=True, read_only=True)
-#     willlearn = WillLearnSerializer(source="course_willlearn", many=True, read_only=True)
-#     lesson = LessonSerializer(source="course_lesson", many=True, read_only=True)
-#     tags = CourseTagsSerializer(source="course_tags", many=True, read_only=True)
-#     rating = RatingSerializer(source = "course_rating", many=True, read_only=True)
-#     class Meta:
-#         model = Course
-#         fields = '__all__'

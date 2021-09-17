@@ -7,6 +7,9 @@ from.serializers import *
 from rest_framework.viewsets import ModelViewSet
 
 from . serializers import *
+
+def enroll(request, pk):
+    pass
 class CoueseViewSet(ModelViewSet):
     serializer_class = CourseSerializer
     queryset = Course.objects.all() 

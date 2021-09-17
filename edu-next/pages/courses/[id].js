@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import LessonSection from "./../../components/course_details/LessonSection";
+import Alert from './../../components/alert/alert';
 
 export default function courseDetaisls() {
   const [CourseDetails, setCourseDetails] = useState([]);
@@ -14,13 +15,12 @@ export default function courseDetaisls() {
     setCourseDetails(content);
   }, []);
 
-  const users = useSelector((state) => state.user.Userdata);
-  const instractor = users.find(
-    (ele) => ele.id === Number(CourseDetails.instractor)
-  );
+  // const users = useSelector((state) => state.user.Userdata);
+  // const instractor = users.find(
+  //   (ele) => ele.id === Number(CourseDetails.instractor)
+  // );
 
   const date = new Date(CourseDetails.update_date).toUTCString();
-
 
   var lessons = CourseDetails.lesson;
   console.log(lessons);
@@ -28,25 +28,48 @@ export default function courseDetaisls() {
   let lessonList;
 
   if (lessons) {
-    lessonList = lessons.map((item, i) => { 
-            return <LessonSection data={item} key={i} />
-    })
+    lessonList = lessons.map((item, i) => {
+      return <LessonSection data={item} key={i} />;
+    });
+  }
+const logedUser = useSelector((state) => state.user.log.userId);
+let alerText;
+  const enrollHandeler = () => {
+    if (CourseDetails.course_price) {
+      console.log(CourseDetails.id);
+      console.log(CourseDetails.course_price);
+      console.log(logedUser);
+
+      alerText = <Alert />
+    }
+  };
+
+  const v_link_data = useSelector(state => state.course.cliked.vlink)
+  console.log("details page ", v_link_data);
+
+  let ifram;
+
+  if(v_link_data){
+    ifram =(<iframe width="750" height="418" src="https://www.youtube.com/embed/vdAI-oR-cyw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>)    
+  }
+  else{
+    ifram =(<iframe width="750" height="418" src="https://www.youtube.com/embed/2hwbZIjqJg4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>)    
+
   }
 
   return (
     <>
       <br></br>
       <br></br>
+      
       <section className="courses-details-area pd-top-135 pd-bottom-130">
         <div className="container">
+        {alerText}
           <div className="row">
             <div className="col-lg-8">
               <div className="single-course-wrap mb-0">
                 <div className="thumb">
-                  <a className="play-btn" href="#">
-                    <i className="fa fa-play"></i>
-                  </a>
-                  <img src="/assets/img/course/video.png" alt="img" />
+                  {ifram}
                 </div>
                 <div className="wrap-details">
                   <h5>
@@ -68,21 +91,18 @@ export default function courseDetaisls() {
                         .toUTCString()
                         .slice(4, 17)}
                     </div>
-                    <div className="ms-auto">
-                      <i
-                        className="fa fa-user me-2"
-                        style={{ color: "var(--main-color)" }}
-                      ></i>
-                      Enrolled 5k
-                    </div>
                   </div>
                   <div className="buying-wrap d-flex align-items-center">
-                    <h2 className="price d-inline-block mb-0">$30</h2>
-                    <a className="btn btn-base ms-auto" href="#">
-                      Add to Cart
+                    <h2 className="price d-inline-block mb-0">৳300</h2>
+                    <a
+                      className="btn btn-base ms-auto"
+                      href="#"
+                      onClick={enrollHandeler}
+                    >
+                      Enroll Now
                     </a>
                     <a className="btn btn-base-light ms-3" href="#">
-                      Buy Now
+                      Add to Cart
                     </a>
                     <div className="ms-auto d-425-none">
                       <a href="#">
@@ -600,9 +620,7 @@ export default function courseDetaisls() {
               <div className="widget widget-accordion-inner">
                 <h5 className="widget-title border-0">Course Lessons</h5>
                 <div className="accordion" id="accordion-0">
-
-                {lessonList}
-
+                  {lessonList}
                 </div>
               </div>
               <div className="widget widget-course-details mb-0">
