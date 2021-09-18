@@ -1,27 +1,27 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import LessonSection from "./../../components/course_details/LessonSection";
-import Alert from './../../components/alert/alert';
-import Iframe from './../../components/course_details/iframe_block';
+import Alert from "./../../components/alert/alert";
+import Iframe from "./../../components/course_details/iframe_block";
 import myStore from "../redux/store";
 
 export default function courseDetaisls() {
   const [CourseDetails, setCourseDetails] = useState([]);
   const courselist = useSelector((state) => state.course.CourseList);
 
-
   useEffect(async () => {
     const link = window.location.href;
     const id = link.replace("http://localhost:3000/courses/", "");
+    const fid = id.replace("#", "");
 
-    const content = courselist.find((courselist) => courselist.id == id);
+    const content = courselist.find((courselist) => courselist.id == fid);
     setCourseDetails(content);
   }, []);
 
   const date = new Date(CourseDetails.update_date).toUTCString();
 
   var lessons = CourseDetails.lesson;
-  console.log(lessons);
+  // console.log(lessons);
   let lessonList;
 
   if (lessons) {
@@ -30,9 +30,13 @@ export default function courseDetaisls() {
     });
   }
 
-const logedUser = useSelector((state) => state.user.log.userId);
+  const logedUser = useSelector((state) => state.user.log.userId);
 
-let alerText;
+  let enrolled_checker = useSelector((state) =>
+    state.user.Userdata.find((ele) => ele.id == logedUser)
+  );
+
+  let alerText;
 
   const enrollHandeler = () => {
     if (CourseDetails.course_price) {
@@ -40,11 +44,42 @@ let alerText;
       console.log(CourseDetails.course_price);
       console.log(logedUser);
 
-      alerText = <Alert />
+      alerText = <Alert />;
     }
   };
 
-  const v_link_data = useSelector(state => state.course.cliked.vlink);
+  let enroll_bar;
+  let enroll_log = false;
+
+  if (enrolled_checker) {
+    if (enrolled_checker.course_enrolled.length > 0) {
+      enroll_log = true;
+      console.log("Enrolled ", enrolled_checker.course_enrolled);
+    }
+  }
+  if (!enroll_log) {
+    enroll_bar = (
+      <div className="buying-wrap d-flex align-items-center pd-bottom-35 pd-top-5">
+        <h2 className="price d-inline-block mb-0">৳300</h2>
+        <button className="btn btn-sm btn-base ms-auto mx-2 p-1" onClick={enrollHandeler}>
+          Enroll Now
+        </button>
+        <button className="btn btn-sm btn-base-light mx-2 p-1" href="#">
+          Add to Cart
+        </button>
+        <div className="ms-auto d-425-none">
+          <a href="#">
+            <i className="far fa-heart"></i>
+          </a>
+          <a className="ms-4" href="#">
+            <i className="fa fa-share me-2"></i>share
+          </a>
+        </div>
+      </div>
+    );
+  }
+
+  const v_link_data = useSelector((state) => state.course.cliked.vlink);
 
   let ifram;
   let def_link = "https://www.youtube.com/embed/2hwbZIjqJg4";
@@ -52,31 +87,30 @@ let alerText;
   let v_state;
 
   v_state = v_link_data;
-  if (v_state){
-  console.log("Updated v_state ", v_state);
-}
+  if (v_state) {
+    console.log("Updated v_state ", v_state);
+  }
 
-    if(v_state){
-      ifram = <Iframe link = {v_state}/>
-    }
-    else{
-      ifram = <Iframe link = {def_link} />  
-    }
-    
+  let uid = new Date().getUTCMilliseconds();
+  if (v_state) {
+    ifram = <Iframe link={v_state} id={uid} />;
+  } else {
+    ifram = <Iframe link={def_link} id={uid} />;
+  }
+
   return (
     <>
       <br></br>
       <br></br>
-      
+
       <section className="courses-details-area pd-top-135 pd-bottom-130">
         <div className="container">
-        {alerText}
+          {alerText}
           <div className="row">
             <div className="col-lg-8">
               <div className="single-course-wrap mb-0">
-                
-                  {ifram}
-                
+                {ifram}
+
                 <div className="wrap-details">
                   <h5>
                     <a href="#">{CourseDetails.course_title}</a>
@@ -98,30 +132,10 @@ let alerText;
                         .slice(4, 17)}
                     </div>
                   </div>
-                  <div className="buying-wrap d-flex align-items-center">
-                    <h2 className="price d-inline-block mb-0">৳300</h2>
-                    <a
-                      className="btn btn-base ms-auto"
-                      href="#"
-                      onClick={enrollHandeler}
-                    >
-                      Enroll Now
-                    </a>
-                    <a className="btn btn-base-light ms-3" href="#">
-                      Add to Cart
-                    </a>
-                    <div className="ms-auto d-425-none">
-                      <a href="#">
-                        <i className="far fa-heart"></i>
-                      </a>
-                      <a className="ms-4" href="#">
-                        <i className="fa fa-share me-2"></i>share
-                      </a>
-                    </div>
-                  </div>
+                  {enroll_bar}
                 </div>
               </div>
-              <ul className="course-tab nav nav-pills pd-top-100">
+              <ul className="course-tab nav nav-pills pd-top-25">
                 <li className="nav-item">
                   <button
                     className="nav-link active"

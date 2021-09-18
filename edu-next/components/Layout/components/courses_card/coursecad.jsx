@@ -33,7 +33,7 @@ export default function CourseCard({item}){
     const router = useRouter()
 
     function coursedetails(e){
-      console.log("clicked");
+      // console.log("clicked");
       const theTarget = e.target.attributes.pass.value;
       
       router.push('courses/'+`${theTarget}`)

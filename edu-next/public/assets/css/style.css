@@ -556,9 +556,9 @@ ul {
     ## Button
 ---------------------------------------*/
 .btn {
-  height: 60px;
-  line-height: 60px;
-  padding: 0 30px;
+  height: 2.5rem;
+  padding: .5rem !important;
+  margin: 1rem;
   overflow: hidden;
   position: relative;
   border: 0;
@@ -1558,7 +1558,9 @@ ul {
 .pd-top-5 {
   padding-top: 5px;
 }
-
+.pd-top-25 {
+  padding-top: 25px;
+}
 .pd-top-65 {
   padding-top: 65px;
 }
@@ -3226,7 +3228,7 @@ a.showMore-cat.showLess::after {
 .courses-details-area .single-course-wrap .wrap-details .user-area {
   border: 0;
   padding-top: 1rem;
-  padding-bottom: 48px;
+  padding-bottom: 1rem;
 }
 
 .course-tab {
