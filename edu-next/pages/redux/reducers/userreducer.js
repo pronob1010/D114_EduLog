@@ -36,6 +36,15 @@ export const userReducer = (state = initialState, action) => {
             return state;
         }
 
+        case "FREE_ENROLL_ATTEMP":{
+            console.log(action.value);
+            // console.log(state.Userdata.find(ele => ele.id == action.value.loged_user).course_enrolled);
+
+            let user_enrolled_list = state.Userdata.find( (ele) => ele.id == action.value.students).course_enrolled;
+            
+            user_enrolled_list.push(action.value)
+            console.log(user_enrolled_list);
+        }
         
         default: return state; 
     }

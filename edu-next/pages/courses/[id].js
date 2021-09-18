@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import LessonSection from "./../../components/course_details/LessonSection";
 import Alert from "./../../components/alert/alert";
 import Iframe from "./../../components/course_details/iframe_block";
 import myStore from "../redux/store";
+import { useRouter } from "next/router";
 
 export default function courseDetaisls() {
   const [CourseDetails, setCourseDetails] = useState([]);
   const courselist = useSelector((state) => state.course.CourseList);
+  const router = useRouter();
+  const [final_id, setfinal_id] = useState();
 
   useEffect(async () => {
     const link = window.location.href;
@@ -16,6 +19,8 @@ export default function courseDetaisls() {
 
     const content = courselist.find((courselist) => courselist.id == fid);
     setCourseDetails(content);
+    setfinal_id(fid);
+    // router.push('#');
   }, []);
 
   const date = new Date(CourseDetails.update_date).toUTCString();
@@ -29,6 +34,7 @@ export default function courseDetaisls() {
       return <LessonSection data={item} key={i} />;
     });
   }
+  let alertText;
 
   const logedUser = useSelector((state) => state.user.log.userId);
 
@@ -36,16 +42,38 @@ export default function courseDetaisls() {
     state.user.Userdata.find((ele) => ele.id == logedUser)
   );
 
-  let alerText;
+  const dispatch = useDispatch();
 
   const enrollHandeler = () => {
-    if (CourseDetails.course_price) {
-      console.log(CourseDetails.id);
-      console.log(CourseDetails.course_price);
-      console.log(logedUser);
+    const datetime = new Date().toLocaleString();
 
-      alerText = <Alert />;
-    }
+    console.log("Course id ", CourseDetails.id);
+    console.log("Course price ", CourseDetails.course_price);
+    console.log("Loged user id ", logedUser);
+    console.log("Enrolled time ", datetime);
+
+    if (CourseDetails.course_price == 0) 
+    {
+      dispatch({
+        type: "FREE_ENROLL_ATTEMP",
+        value: {
+          id: Math.random(),
+          enrollment_date: datetime,
+          Course: CourseDetails.id,
+          // 'course_price':CourseDetails.course_price,
+          students: logedUser,
+        },
+      });
+      router.push("#");
+    } 
+    // else {
+    //   router.push("#")
+    //   console.log("Paid Block");
+
+    //   alertText = (<Alert user={logedUser} message={"Pay First"} />);
+    // }
+
+    <Alert user={logedUser} message={"Pay First"} />
   };
 
   let enroll_bar;
@@ -53,15 +81,22 @@ export default function courseDetaisls() {
 
   if (enrolled_checker) {
     if (enrolled_checker.course_enrolled.length > 0) {
-      enroll_log = true;
-      console.log("Enrolled ", enrolled_checker.course_enrolled);
+      if (
+        enrolled_checker.course_enrolled.find((ele) => ele.Course == final_id)
+      ) {
+        // console.log(enrolled_checker.course_enrolled);
+        enroll_log = true;
+      }
     }
   }
   if (!enroll_log) {
     enroll_bar = (
       <div className="buying-wrap d-flex align-items-center pd-bottom-35 pd-top-5">
-        <h2 className="price d-inline-block mb-0">৳300</h2>
-        <button className="btn btn-sm btn-base ms-auto mx-2 p-1" onClick={enrollHandeler}>
+        <h2 className="price d-inline-block mb-0">৳ 300</h2>
+        <button
+          className="btn btn-sm btn-base ms-auto mx-2 p-1"
+          onClick={enrollHandeler}
+        >
           Enroll Now
         </button>
         <button className="btn btn-sm btn-base-light mx-2 p-1" href="#">
@@ -77,6 +112,8 @@ export default function courseDetaisls() {
         </div>
       </div>
     );
+  } else {
+    alertText = (<Alert user={logedUser} message={"Happy learning !"} />);
   }
 
   const v_link_data = useSelector((state) => state.course.cliked.vlink);
@@ -98,6 +135,14 @@ export default function courseDetaisls() {
     ifram = <Iframe link={def_link} id={uid} />;
   }
 
+  let WillLearn;
+
+  // for (let ob in CourseDetails.willlearn){
+  //   console.log(ob);
+  // }
+
+  // console.log( CourseDetails.willlearn)
+
   return (
     <>
       <br></br>
@@ -105,7 +150,9 @@ export default function courseDetaisls() {
 
       <section className="courses-details-area pd-top-135 pd-bottom-130">
         <div className="container">
-          {alerText}
+
+          {alertText}
+          
           <div className="row">
             <div className="col-lg-8">
               <div className="single-course-wrap mb-0">
@@ -201,24 +248,9 @@ export default function courseDetaisls() {
                     <div className="bg-gray">
                       <h6>What Will I Learn?</h6>
                       <div className="row">
-                        <div className="col-md-6">
+                       <div className="col-md-12">
                           <ul>
-                            <li>
-                              <i className="fa fa-check"></i>Know how to
-                              configure Wordpress for best results
-                            </li>
-                            <li>
-                              <i className="fa fa-check"></i>Understand plugins
-                              & themes and how to find/install them
-                            </li>
-                            <li>
-                              <i className="fa fa-check"></i>Protect their
-                              Wordpress website from hackers and spammers
-                            </li>
-                          </ul>
-                        </div>
-                        <div className="col-md-6">
-                          <ul>
+                            {WillLearn}
                             <li>
                               <i className="fa fa-check"></i>Create a static
                               homepage useful for most websites, or a blog like

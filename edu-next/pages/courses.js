@@ -2,10 +2,10 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import CourseCard from "./../components/Layout/components/courses_card/coursecad";
 import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 
 
 export default function Courses() {
-
   const CourseList = useSelector(state => state.course.CourseList)
   
   return (
