@@ -112,6 +112,7 @@ class Test(models.Model):
     option_4 = models.CharField(max_length=50)
     Correct_Answer = models.CharField(max_length=50)
     Time_In_Secound = models.PositiveIntegerField()
+    point = models.PositiveIntegerField(default=0)
 
 
 class Rating(models.Model):

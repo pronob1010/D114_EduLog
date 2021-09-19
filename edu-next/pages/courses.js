@@ -1,13 +1,33 @@
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import CourseCard from "./../components/Layout/components/courses_card/coursecad";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
+import { setCourseList } from "./redux/actions/cources_act";
 
 
 export default function Courses() {
-  const CourseList = useSelector(state => state.course.CourseList)
+
+  const dispatch = useDispatch();
+  const router = useRouter();
   
+  const fetchCourseListFromApi = async () => {
+    const res = await fetch(`http://localhost:8000/api/data/course/`)
+    const data = await res.json()
+
+    if (data){
+      dispatch(setCourseList(data));
+      router.push('#');
+    }
+  }
+
+  useEffect(()=>{
+    fetchCourseListFromApi();
+  }, [])
+
+  
+  const CourseList = useSelector(state => state.course.CourseList);
+
   return (
     <>
       <br></br>

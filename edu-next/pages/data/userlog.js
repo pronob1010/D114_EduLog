@@ -4,7 +4,3 @@ export const userlog = {
     'expTime':'',
 }
 
-
-export const testData = {
-        "data_test" : 0,
-    }

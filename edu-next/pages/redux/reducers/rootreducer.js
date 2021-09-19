@@ -6,4 +6,5 @@ import { courseReducer } from './coursereducer';
 export const rootReducer = combineReducers({
     user : userReducer, 
     course : courseReducer,
+    // course_data : CourseDataReducer,
 })

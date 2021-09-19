@@ -4,19 +4,13 @@ import {testData, userlog} from '../../data/userlog';
 
 const initialState = {
     Userdata: Userdata,
-    test : testData,
-    log :userlog,
+    log :userlog, //local storage
 
 };
 
 export const userReducer = (state = initialState, action) => {
     
     switch(action.type){
-        case "TEST":{
-            const li = state.test.data_test;
-            console.log("current ", li);
-            return state.test.data_test = 5;
-        }
 
         case "LOGIN_INFO":{
             if (typeof window !== 'undefined') {
@@ -49,10 +43,5 @@ export const userReducer = (state = initialState, action) => {
         default: return state; 
     }
 
-    // if(action.type === "A"){
-    //     return state.test.data_test + 5;
-    // }
-    // else{
-    //     return state;
-    // }
+   
 };

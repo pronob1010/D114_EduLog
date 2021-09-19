@@ -1,3 +1,5 @@
+// import { useEffect } from 'react';
+
 const CourseList = [
     {
         id: 6,
@@ -316,5 +318,29 @@ const CourseList = [
         Course_Base_Category: 1,
     },
 ];
+
+export const CourseList2 = []
+
+export const SingleCourseDetails = []
+
+// export async function getStaticProps(context) {
+//     const res = await fetch(`http://localhost:8000/api/data/course/`)
+//     const data = await res.json()
+  
+//     if (!data) {
+//       return {
+//         notFound: true,
+//       }
+//     }
+//     console.log("will be passed", data);
+  
+//     return {
+//     //   props: { data }, // will be passed to the page component as props
+//     }
+//   }
+
+// useEffect(() => {
+//     getStaticProps();
+// }, [])
 
 export default CourseList;
