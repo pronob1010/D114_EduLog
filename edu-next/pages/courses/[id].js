@@ -3,12 +3,14 @@ import { useSelector, useDispatch } from "react-redux";
 import LessonSection from "./../../components/course_details/LessonSection";
 import Alert from "./../../components/alert/alert";
 import Iframe from "./../../components/course_details/iframe_block";
-import myStore from "../redux/store";
 import { useRouter } from "next/router";
-import { setSingleCourse } from "../redux/actions/cources_act";
+import Quiz from "../../components/course_details/quiz/quiz";
 
 export default function courseDetaisls() {
+  
+  const [isLoading, setisLoading] = useState(true);
   const [CourseDetails, setCourseDetails] = useState([]);
+  
 
   let courselist = useSelector((state) => state.course.CourseList);
 
@@ -17,12 +19,8 @@ export default function courseDetaisls() {
 
   const dispatch = useDispatch();
 
-  
-
-  let courselist_api = useSelector((state) => state.course.SingleCourseData);
-  
-
   useEffect(async () => {
+
     const link = window.location.href;
     const id = link.replace("http://localhost:3000/courses/", "");
     const fid = id.replace("#", "");
@@ -30,37 +28,30 @@ export default function courseDetaisls() {
 
     const content = courselist.find((courselist) => courselist.id == fid);
 
-    if (content){
+    if (content) {
       setCourseDetails(content);
-    }
-    else{
-      const fetchCourseListFromApi = async (final_id) => {  
-        const res = await fetch('http://localhost:8000/api/data/course/'+Number(final_id));
-        const data = await res.json()
-    
-        if (data){
-          setCourseDetails(data);  
+    } 
+    else {
+      const fetchCourseListFromApi = async (final_id) => {
+        const res = await fetch(
+          "http://localhost:8000/api/data/course/" + Number(final_id)
+        );
+        const data = await res.json();
+
+        if (data) {
+          setCourseDetails(data);
         }
-      }
-      
+      };
+
       fetchCourseListFromApi(fid);
-  }
-
+    }
+    setisLoading(false);
   }, []);
-
-  
-
-
-    // console.log(courselist);
-
-
- 
-  
 
   const date = new Date(CourseDetails.update_date).toUTCString();
 
   var lessons = CourseDetails.lesson;
-  // console.log(lessons);
+
   let lessonList;
 
   if (lessons) {
@@ -75,7 +66,6 @@ export default function courseDetaisls() {
   let enrolled_checker = useSelector((state) =>
     state.user.Userdata.find((ele) => ele.id == logedUser)
   );
-
 
   const enrollHandeler = () => {
     const datetime = new Date().toLocaleString();
@@ -144,7 +134,8 @@ export default function courseDetaisls() {
         </div>
       </div>
     );
-  } else {
+  } 
+  else {
     alertText = <Alert user={logedUser} message={"Happy learning !"} />;
   }
 
@@ -175,7 +166,11 @@ export default function courseDetaisls() {
 
   // console.log( CourseDetails.willlearn)
 
-  
+let test_block;
+  if(!isLoading){
+    test_block = <Quiz />
+  }
+
   return (
     <>
       <br></br>
@@ -412,38 +407,7 @@ export default function courseDetaisls() {
                           >
                             <div className="accordion-body">
                               <div className="main-container">
-                                
-                                <div className="quiz-app">
-                                  <div className="info">
-                                    <div className="container">
-                                      <div className="row">
-                                        <div className="category">
-                                          Section : <span>HTML </span>
-                                        </div>
-                                        <div className="count"></div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className="question-area">
-                                    <div className="container">
-                                      <h2></h2>
-                                      <ul className="answers"></ul>
-                                      <button className="submit">
-                                        Submit Answers
-                                      </button>
-                                    </div>
-                                  </div>
-                                  <div className="pullets-parent">
-                                    <div className="container">
-                                      <div className="row">
-                                        <div className="pullets"></div>
-                                        <div className="time-down"></div>
-                                        <div className="results"></div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-
+                                {test_block}
                               </div>
                             </div>
                           </div>
@@ -470,36 +434,7 @@ export default function courseDetaisls() {
                           >
                             <div className="accordion-body">
                               <div className="main-container">
-                                <div className="quiz-app">
-                                  <div className="info">
-                                    <div className="container">
-                                      <div className="row">
-                                        <div className="category">
-                                          Section : <span>HTML</span>
-                                        </div>
-                                        <div className="count"></div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className="question-area">
-                                    <div className="container">
-                                      <h2></h2>
-                                      <ul className="answers"></ul>
-                                      <button className="submit">
-                                        Submit Answers
-                                      </button>
-                                    </div>
-                                  </div>
-                                  <div className="pullets-parent">
-                                    <div className="container">
-                                      <div className="row">
-                                        <div className="pullets"></div>
-                                        <div className="time-down"></div>
-                                        <div className="results"></div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
+                              {/* {test_block} */}
                               </div>
                             </div>
                           </div>
@@ -552,6 +487,7 @@ export default function courseDetaisls() {
                             </div>
                           </div>
                         </div>
+                        
                       </div>
                     </div>
                   </div>

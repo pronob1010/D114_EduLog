@@ -19,8 +19,11 @@
     padding: 10px;
 }
 
+.hide{
+    display: none !important;
+}
+
 .info {
-    background-color: #f6f6f6;
     margin-bottom: 10px;
 }
 
@@ -75,7 +78,7 @@
 }
 
 .pullets-parent {
-    border-top: 1px solid #ddd;
+    border-top: 5px solid rgba(221, 221, 221, 0);
 }
 
 .pullets-parent .pullets span {
