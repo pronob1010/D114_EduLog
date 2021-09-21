@@ -106,13 +106,14 @@ class Test(models.Model):
     Course = models.ForeignKey(Course, on_delete=CASCADE, default=None, related_name="course_test")
     Lesson = models.ForeignKey(Lesson, on_delete=CASCADE, default=None, related_name="lesson_test")
     Question  = models.CharField(max_length=100)
-    option_1 = models.CharField(max_length=50)
-    option_2 = models.CharField(max_length=50)
-    option_3 = models.CharField(max_length=50)
-    option_4 = models.CharField(max_length=50)
-    Correct_Answer = models.CharField(max_length=50)
     Time_In_Secound = models.PositiveIntegerField()
     point = models.PositiveIntegerField(default=0)
+
+class TestChoice(models.Model):
+    question = models.ForeignKey(Test, related_name='choice', on_delete=CASCADE)
+    option_title = models.CharField(max_length=50)
+    is_correct = models.BooleanField(default=False, null=False)
+    
 
 
 class Rating(models.Model):
