@@ -115,7 +115,6 @@ class TestChoice(models.Model):
     is_correct = models.BooleanField(default=False, null=False)
     
 
-
 class Rating(models.Model):
     Course = models.ForeignKey(Course, on_delete=CASCADE, default=None, related_name="course_rating")
     student = models.ForeignKey(User, on_delete=SET_NULL, null=True)

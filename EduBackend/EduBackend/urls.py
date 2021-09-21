@@ -10,6 +10,7 @@ urlpatterns = [
     path('api/data/', include('courses.urls')),
     path('api/site/', include('siteinfo.urls')),
     path('api/payment/', include('payment.urls')),
+    path('^_nested_admin/', include('nested_admin.urls')),
 ]
 
 urlpatterns+=static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

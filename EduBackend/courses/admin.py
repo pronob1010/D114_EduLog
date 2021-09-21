@@ -1,3 +1,4 @@
+import nested_admin
 from django.contrib import admin
 from . models import *
 
@@ -6,37 +7,37 @@ admin.site.register(CourseBaseCategory)
 admin.site.register(CourseEnrollment)
 
 
-class CourseTagsAdmin(admin.TabularInline):
+class CourseTagsAdmin(nested_admin.NestedStackedInline):
     model = CourseTags
     exclude = ('slug',)
 
-class PrerequisiteAdmin(admin.StackedInline):
+class PrerequisiteAdmin(nested_admin.NestedStackedInline):
     model = Prerequisite
 
-class WillLearnAdmin(admin.StackedInline):
+class WillLearnAdmin(nested_admin.NestedStackedInline):
     model = WillLearn
 
-class LessonAdmin(admin.StackedInline):
+class LessonAdmin(nested_admin.NestedStackedInline):
     model = Lesson
     exclude = ('slug',)
 
 
-class VideoAdmin(admin.StackedInline):
+class VideoAdmin(nested_admin.NestedStackedInline):
     model = Video
     exclude = ('slug',)
-
-
-class CourseAdmin(admin.ModelAdmin):
-    inlines = [PrerequisiteAdmin, CourseTagsAdmin, WillLearnAdmin, LessonAdmin, VideoAdmin]
-
-admin.site.register(Course, CourseAdmin)
-
-class ChoiceInline(admin.TabularInline):
+class ChoiceInline(nested_admin.NestedTabularInline):
     model = TestChoice
     
-class TestAdmin(admin.ModelAdmin):
+class TestAdmin(nested_admin.NestedTabularInline):
     model = Test
     inlines = [ChoiceInline,]
 
-admin.site.register(Test, TestAdmin)
+class CourseAdmin(nested_admin.NestedModelAdmin):
+    inlines = [PrerequisiteAdmin, CourseTagsAdmin, WillLearnAdmin, LessonAdmin, VideoAdmin, TestAdmin]
+
+admin.site.register(Course, CourseAdmin)
+
+
+
+# admin.site.register(Test, TestAdmin)
 

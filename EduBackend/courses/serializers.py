@@ -24,7 +24,13 @@ class VideoSerializer(ModelSerializer):
         model = Video
         fields = "__all__"
 
+class ChoiceSerializer(ModelSerializer):
+    class Meta:
+        model = TestChoice
+        fields = "__all__"
+
 class TestSerializer(ModelSerializer):
+    choices = ChoiceSerializer(source="choice", many=True, read_only=True)
     class Meta:
         model = Test
         fields = "__all__"
