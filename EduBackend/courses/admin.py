@@ -26,6 +26,11 @@ class VideoAdmin(admin.StackedInline):
     exclude = ('slug',)
 
 
+class CourseAdmin(admin.ModelAdmin):
+    inlines = [PrerequisiteAdmin, CourseTagsAdmin, WillLearnAdmin, LessonAdmin, VideoAdmin]
+
+admin.site.register(Course, CourseAdmin)
+
 class ChoiceInline(admin.TabularInline):
     model = TestChoice
     
@@ -33,12 +38,5 @@ class TestAdmin(admin.ModelAdmin):
     model = Test
     inlines = [ChoiceInline,]
 
-# admin.site.register(Test, TestAdmin)
-
-class CourseAdmin(admin.ModelAdmin):
-    inlines = [PrerequisiteAdmin, CourseTagsAdmin, WillLearnAdmin, LessonAdmin, VideoAdmin, TestAdmin]
-
-admin.site.register(Course, CourseAdmin)
-
-
+admin.site.register(Test, TestAdmin)
 
