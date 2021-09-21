@@ -4065,7 +4065,6 @@ a.showMore-cat.showLess::after {
 }
 .widget-accordion-inner .accordion-item .accordion-collapse ul {
   margin: 0;
-  padding: 0;
 }
 .widget-accordion-inner .accordion-item .accordion-collapse ul li {
   display: -webkit-box;
@@ -4563,4 +4562,8 @@ hr{
   background-color: currentColor;
   border: 0;
   opacity: .25;
+}
+
+.question-area{
+  padding: 1rem;
 }

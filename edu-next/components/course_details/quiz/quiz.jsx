@@ -30,7 +30,7 @@ export default function Quiz() {
       "https://raw.githubusercontent.com/alaa-sufi/json-files/main/question.json",
       true
     );
-    myRequist.send();
+    myRequist.send(); 
 
     myRequist.onreadystatechange = function () {
       console.log(quizApp);

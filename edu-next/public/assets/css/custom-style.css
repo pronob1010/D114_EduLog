@@ -39,17 +39,18 @@
 
 .question-area .answers {
     list-style: none;
-    background-color: #f6f6f6;
     padding: 5px;
 }
 
 .question-area .answers li {
-    padding: 10px 5px;
+    padding: 5px 5px;
     display: flex;
+    border: 1px solid rgb(102, 102, 102);
+    padding-left: 1rem;
 }
 
 .question-area .answers li:not(:last-child) {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid rgb(102, 102, 102);
 }
 
 .question-area .answers input[type=radio]:checked+label {
@@ -58,14 +59,13 @@
 }
 
 .question-area .answers label {
-    color: grey;
-    margin-left: 5px;
+    margin-left: .5rem;
 }
 
 .question-area button.submit {
     background-color: #0075ff;
     width: 100%;
-    padding: 10px;
+    padding: 2px;
     border-radius: 5px;
     border: none;
     color: #fff;

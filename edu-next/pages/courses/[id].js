@@ -5,6 +5,7 @@ import Alert from "./../../components/alert/alert";
 import Iframe from "./../../components/course_details/iframe_block";
 import { useRouter } from "next/router";
 import Quiz from "../../components/course_details/quiz/quiz";
+import QuizApp from "../../components/course_details/quiz/QuizNew";
 
 export default function courseDetaisls() {
   
@@ -168,7 +169,8 @@ export default function courseDetaisls() {
 
 let test_block;
   if(!isLoading){
-    test_block = <Quiz />
+    // test_block = <Quiz />
+    test_block = <QuizApp />
   }
 
   return (
