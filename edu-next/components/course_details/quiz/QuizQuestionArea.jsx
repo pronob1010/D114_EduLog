@@ -1,13 +1,19 @@
 import QuizProgressBar from './QuixProgressbar';
 import QuizOptions from './QuizOptions';
+import { useState } from 'react';
 
-export default function QuizQuestionArea({ data }) {
+export default function QuizQuestionArea({ data, handleChange }) {
     // console.log("Question i receive sent ", data);
+
+
+
 
     let questions;
 
-    let choice_list = data.choices.map(item => {
-        return <QuizOptions item = {item} />
+    let choice_list = data.choices.map((item, index) => {
+
+
+        return <QuizOptions item={item} index={index} handleChange={handleChange} />
     })
 
     questions = (
@@ -29,7 +35,7 @@ export default function QuizQuestionArea({ data }) {
                 </ul>
                 <div className="row m-2">
                     <div className="col-6">
-                        <button class="submit">Submit</button>
+                        <button class="submit">Previous</button>
                     </div>
                     <div className="col-6">
                         <button class="submit">Next</button>

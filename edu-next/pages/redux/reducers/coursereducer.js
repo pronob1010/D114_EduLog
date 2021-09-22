@@ -39,13 +39,13 @@ export const courseReducer = (state = initialState, action) => {
         
         state.SingleCourseData = action.value;
         
-        console.log(state);
+        // console.log(state);
         return state;
       }
 
-      case "CURRENT_TEST": {
-        console.log("CURRENT_TEST ", action.value);
-      }
+      // case "CURRENT_TEST": {
+      //   console.log("CURRENT_TEST ", action.value);
+      // }
 
     default:
         return state;

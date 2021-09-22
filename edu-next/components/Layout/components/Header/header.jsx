@@ -10,7 +10,7 @@ export default function Header() {
 
   const logoutHandel = () => 
   {
-    console.log("")
+    // console.log("")
     dispatch(logout())
     localStorage.clear();
   };

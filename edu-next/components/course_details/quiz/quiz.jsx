@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Link from 'next/link'; 
 
 export default function Quiz() {
-  console.log("Quiz com");
+  // console.log("Quiz com");
   
   var start = document.querySelector(".statguide");
   var quizApp = document.querySelector(".quiz-app");
@@ -33,7 +33,7 @@ export default function Quiz() {
     myRequist.send(); 
 
     myRequist.onreadystatechange = function () {
-      console.log(quizApp);
+      // console.log(quizApp);
       if (this.status === 200 && this.readyState === 4) {
         //start time-down
         timeDown(duration);

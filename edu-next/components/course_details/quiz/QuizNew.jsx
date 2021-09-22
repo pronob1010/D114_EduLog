@@ -6,6 +6,7 @@ import { useState } from "react";
 import QuizQuestionArea from "./QuizQuestionArea";
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
+import _ from 'Lodash';
 
 const initialState = null;
 
@@ -19,6 +20,10 @@ const reducer = (state, action) => {
       })
 
       return action.value;
+
+    case "ANSWER":
+      const questions = _.cloneDeep(state);
+      questions[action.questionId].choices[action.optionIndex].checked = action.value;
 
     default:
       return state;
@@ -39,7 +44,7 @@ export default function QuizApp({ t_details }) {
 
   const [qna, dispatch] = useReducer(reducer, initialState);
 
-  // console.log("Qna ", qna);
+
 
   useEffect(() => {
     setsec1(document.querySelector(".start")),
@@ -63,17 +68,31 @@ export default function QuizApp({ t_details }) {
     }
   };
 
+  function handleAnswerChange(e, index) {
+    console.log("handleAnswerChange clicked.");
+    dispatch({
+      type : "ANSWER", 
+      questionId: currentQuestion,
+      optionIndex : index, 
+      value : e.target.checked,
+    });
+  }
+
  
+if(qna){
+  // console.log("currentQuestion checker ", qna[currentQuestion]);
 
-  q_area = t_details.test.map(
-    (item) => { return <QuizQuestionArea data={item} /> }
-  )
+  q_area = <QuizQuestionArea data={qna[currentQuestion]} handleChange={handleAnswerChange}/>
 
+  // q_area = qna.map(
+  //   (item) => { return <QuizQuestionArea data={item} /> }
+  // )
+}
 
   return (
     <>
       <div className="quiz-app">
-        <div class="start d-flex p-4">
+        <div class="start d-flex p-4 hide">
           <div class="">
             <h4>Lesson : {t_details.Lesson_Title} </h4>
             <p>You will have only one attemp.</p>
@@ -88,7 +107,7 @@ export default function QuizApp({ t_details }) {
           </div>
         </div>
 
-        <div class="question-area hide">
+        <div class="question-area">
           {q_area}
         </div>
       </div>
