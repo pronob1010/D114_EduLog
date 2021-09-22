@@ -67,14 +67,21 @@ class CourseTags(models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.Tags_Title
+        return self.Tags_Title + self.Course.course_title
+
 class Prerequisite(models.Model):
     Course = models.ForeignKey(Course, on_delete=CASCADE, default=None, related_name="course_prerequisite")
     short_description = models.CharField(max_length=50, null=True)
 
+    def __str__(self):
+        return self.short_description +"-"+self.Course.course_title
+
 class WillLearn(models.Model):
     Course = models.ForeignKey(Course, on_delete=CASCADE, related_name="course_willlearn")
     short_description = models.CharField(max_length=50, null=True)
+
+    def __str__(self):
+        return self.short_description +"-"+self.Course.course_title
 
 class Lesson(models.Model):
     Course = models.ForeignKey(Course, on_delete=CASCADE, default=None, related_name="course_lesson")
@@ -87,7 +94,7 @@ class Lesson(models.Model):
         return super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.Lesson_Title
+        return self.Lesson_Title + "-" + self.Course.course_title
 
 class Video(models.Model):
     Course = models.ForeignKey(Course, on_delete=CASCADE, default=None,  related_name="course_video")
@@ -102,6 +109,9 @@ class Video(models.Model):
             self.slug = slugify(self.Video_Title+"-"+self.Lesson.Lesson_Title+"-"+self.Course.course_title)
         return super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.Video_Title+"-"+self.Lesson.Lesson_Title+"-"+self.Course.course_title
+
 class Test(models.Model):
     Course = models.ForeignKey(Course, on_delete=CASCADE, default=None, related_name="course_test")
     Lesson = models.ForeignKey(Lesson, on_delete=CASCADE, default=None, related_name="lesson_test")
@@ -109,10 +119,18 @@ class Test(models.Model):
     Time_In_Secound = models.PositiveIntegerField()
     point = models.PositiveIntegerField(default=0)
 
+    def __str__(self):
+        return self.Question +"-"+self.Lesson.Lesson_Title+"-"+self.Course.course_title
+
 class TestChoice(models.Model):
+    # Course = models.ForeignKey(Course, on_delete=CASCADE, default=None, null=True)
+    Lesson = models.ForeignKey(Lesson, on_delete=CASCADE, default=None, null=True, related_name='lesson_choice')
     question = models.ForeignKey(Test, related_name='choice', on_delete=CASCADE)
     option_title = models.CharField(max_length=50)
     is_correct = models.BooleanField(default=False, null=False)
+
+    def __str__(self):
+        return self.option_title +"-"+self.question.Question+"-"
     
 
 class Rating(models.Model):
@@ -128,3 +146,6 @@ class Rating(models.Model):
     rating = models.CharField(max_length=15, choices=ratting_list, null=True)
     comment = models.TextField(max_length=150, null=True, blank= True)
     block = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.rating +"-"+self.comment+"-"+self.student.username+self.Course.course_title
