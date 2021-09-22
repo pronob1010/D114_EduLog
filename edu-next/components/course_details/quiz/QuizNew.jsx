@@ -1,54 +1,66 @@
-import QuizProgressBar from './QuixProgressbar';
-import QuizOptions from './QuizOptions';
-import QuizResult from './QuizResult';
+import QuizProgressBar from "./QuixProgressbar";
+import QuizOptions from "./QuizOptions";
+import QuizResult from "./QuizResult";
+import { useEffect } from "react";
+import { useState } from "react";
+import QuizQuestionArea from "./QuizQuestionArea";
+import { useRouter } from 'next/router';
 
-export default function QuizApp() {
-    return (
-        <>
-            <div className="quiz-app">
-                <div class="question-area">
-                    <div class="d-flex">
-                        <div class="">
-                            <h2>Lesson : Introduction </h2>
-                            <p>There may be multiple options as correct answer. </p>
-                        </div>
-                        <div class="ml-auto">
-                            <button className="btn btn-danger">30 Sec</button>
-                        </div>
-                    </div>
+export default function QuizApp({ t_details }) {
+  // console.log("t_details ", t_details);
+
+  let [sec1, setsec1] = useState();
+  let [sec2, setsec2] = useState();
+  let [sec3, setsec3] = useState();
+
+  useEffect(() => {
+    setsec1(document.querySelector(".start")),
+      setsec2(document.querySelector(".question-area")),
+      setsec3(document.querySelector(".result"));
+  });
+  let q_area;
+
+  let onclickHandeler = () => {
+    // console.log("start clicked");
+    if (sec1) {
+      sec1.classList.add("hide");
+      sec2.classList.remove("hide");
+      // sec3.classList.remove('hide');
+    }
+  };
 
 
-                    <hr></hr>
-                    <div class="container pt-3">
-                        <h4 className="p-1">What Is The Tag That Not Exists in HTML ?</h4>
-                        <ul class="answers">
+  q_area = t_details.test.map(
+    (item) => { return <QuizQuestionArea data={item} /> }
+  )
 
-                            <QuizOptions />
-                            <QuizOptions />
-                            <QuizOptions />
-                            <QuizOptions />
-                        </ul>
-                        <div className="row m-2">
-                            <div className="col-6">
-                            <button class="submit">Submit</button>
-                            
 
-                            </div>
-                            <div className="col-6">
-                            <button class="submit">Next</button>
-                                </div>
-                        </div>
-                    </div>
-                    <hr></hr>
-                    <div className="p-2 ">
-                        <QuizProgressBar />
-                    </div>
-                </div>
-            </div>
+  return (
+    <>
+      <div className="quiz-app">
+        <div class="start d-flex p-4">
+          <div class="">
+            <h4>Lesson : {t_details.Lesson_Title} </h4>
+            <p>You will have only one attemp.</p>
+          </div>
+          <div class="ml-auto">
+            <button
+              className="btn bg-primary text-light p-2"
+              onClick={onclickHandeler}
+            >
+              Start
+            </button>
+          </div>
+        </div>
 
-            <div className="info">
-            <QuizResult />
-            </div>
-        </>
-    )
+        <div class="question-area hide">
+          {q_area}
+        </div>
+      </div>
+
+      <div className="result p-4 hide">
+        <QuizResult />
+      </div>
+    </>
+  );
 }

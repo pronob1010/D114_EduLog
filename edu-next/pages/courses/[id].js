@@ -6,14 +6,17 @@ import Iframe from "./../../components/course_details/iframe_block";
 import { useRouter } from "next/router";
 import Quiz from "../../components/course_details/quiz/quiz";
 import QuizApp from "../../components/course_details/quiz/QuizNew";
+import TestSection from './../../components/course_details/quiz/TestSection';
 
 export default function courseDetaisls() {
   
   const [isLoading, setisLoading] = useState(true);
   const [CourseDetails, setCourseDetails] = useState([]);
   
-
   let courselist = useSelector((state) => state.course.CourseList);
+  
+  //for test
+  let courselist2 = useSelector((state) => state.course.CourseList2);
 
   const router = useRouter();
   const [final_id, setfinal_id] = useState();
@@ -60,6 +63,19 @@ export default function courseDetaisls() {
       return <LessonSection data={item} key={i} />;
     });
   }
+
+  var tests = CourseDetails.lesson;
+
+  let testsList;
+
+ 
+  if (tests) {
+    testsList = tests.map((item, i) => {
+      // console.log(item);
+      return <TestSection data={item} key={i} />;
+    });
+  }
+
   let alertText;
 
   const logedUser = useSelector((state) => state.user.log.userId);
@@ -166,6 +182,8 @@ export default function courseDetaisls() {
   // }
 
   // console.log( CourseDetails.willlearn)
+
+  console.log("test_block ", CourseDetails.lesson);
 
 let test_block;
   if(!isLoading){
@@ -386,110 +404,9 @@ let test_block;
                 >
                   <div className="col-lg-12 sidebar-area">
                     <div className="widget widget-accordion-inner">
-                      <h5 className="widget-title border-0">Course Syllabus</h5>
+                      <h5 className="widget-title border-0">Quiz</h5>
                       <div className="accordion" id="accordionExample">
-                        <div className="accordion-item">
-                          <h2 className="accordion-header" id="headingOne">
-                            <button
-                              className="accordion-button"
-                              type="button"
-                              data-bs-toggle="collapse"
-                              data-bs-target="#collapseOne"
-                              aria-expanded="true"
-                              aria-controls="collapseOne"
-                            >
-                              Introduction
-                            </button>
-                          </h2>
-                          <div
-                            id="collapseOne"
-                            className="accordion-collapse collapse show"
-                            aria-labelledby="headingOne"
-                            data-bs-parent="#accordionExample"
-                          >
-                            <div className="accordion-body">
-                              <div className="main-container">
-                                {test_block}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="accordion-item">
-                          <h2 className="accordion-header" id="heading-2">
-                            <button
-                              className="accordion-button collapsed"
-                              type="button"
-                              data-bs-toggle="collapse"
-                              data-bs-target="#collapse-2"
-                              aria-expanded="false"
-                              aria-controls="collapse-2"
-                            >
-                              1. Setting the Stage for Strategic Thinking
-                            </button>
-                          </h2>
-                          <div
-                            id="collapse-2"
-                            className="accordion-collapse collapse"
-                            aria-labelledby="heading-2"
-                            data-bs-parent="#accordionExample"
-                          >
-                            <div className="accordion-body">
-                              <div className="main-container">
-                              {/* {test_block} */}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="accordion-item">
-                          <h2 className="accordion-header" id="heading-3">
-                            <button
-                              className="accordion-button collapsed"
-                              type="button"
-                              data-bs-toggle="collapse"
-                              data-bs-target="#collapse-3"
-                              aria-expanded="false"
-                              aria-controls="collapse-3"
-                            >
-                              2. Developing Your Strategic Thinking
-                            </button>
-                          </h2>
-                          <div
-                            id="collapse-3"
-                            className="accordion-collapse collapse"
-                            aria-labelledby="heading-3"
-                            data-bs-parent="#accordionExample"
-                          >
-                            <div className="accordion-body">
-                              <ul>
-                                <li>
-                                  <i className="fa fa-lock"></i>
-                                  <span>
-                                    <p>
-                                      Embrace the strategic thinking mindset
-                                    </p>
-                                    <span>1m 24s</span>
-                                  </span>
-                                </li>
-                                <li>
-                                  <i className="fa fa-lock"></i>
-                                  <span>
-                                    <p>Strategy: Not just for corporations</p>
-                                    <span>1m 24s</span>
-                                  </span>
-                                </li>
-                                <li>
-                                  <i className="fa fa-lock"></i>
-                                  <span>
-                                    <p>The sequence of strategy</p>
-                                    <span>1m 24s</span>
-                                  </span>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                        
+                        {testsList}
                       </div>
                     </div>
                   </div>
@@ -657,7 +574,7 @@ let test_block;
             </div>
             <div className="col-lg-4 sidebar-area">
               <div className="widget widget-accordion-inner">
-                <h5 className="widget-title border-0">Course Lessons</h5>
+                <h5 className="widget-title border-0">Lessons</h5>
                 <div className="accordion" id="accordion-0">
                   {lessonList}
                 </div>

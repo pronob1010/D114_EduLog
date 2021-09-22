@@ -19,7 +19,16 @@ export default function Video ({vdetails}) {
     const dispatch = useDispatch();
     const router = useRouter()
     const clickedLink = (e) => {
-        let clicked_link = e.target.getAttribute('url');
+        let v_id = e.target.getAttribute('id');
+        
+        // console.log("vdetails", vdetails.Video_URL);
+
+        // let clicked_link = e.target.getAttribute('url');
+
+        let clicked_link = vdetails.Video_URL
+
+        // console.log("clicked_link ", clicked_link)
+
         dispatch({
             type:"PLAY_VIDEO",
             value:clicked_link,
@@ -33,7 +42,7 @@ export default function Video ({vdetails}) {
         <li>
             {icon}
             <span>
-                <a onClick={clickedLink}><p url={vdetails.Video_URL}>{vdetails.Video_Title}</p></a>
+                <a onClick={clickedLink}><p url={vdetails.Video_URL} id={vdetails.id}>{vdetails.Video_Title}</p></a>
             <span>1m 24s</span></span>
         </li>
         </>
