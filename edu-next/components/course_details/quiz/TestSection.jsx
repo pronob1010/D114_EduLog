@@ -3,7 +3,8 @@ import QuizApp from './QuizNew';
 
 
 export default function TestSection({ data }) {
-  
+  // console.log("Main data i passed , ", data);
+
   let s_quiz;
   
   if (data.video) {

@@ -1,23 +1,57 @@
 import QuizProgressBar from "./QuixProgressbar";
 import QuizOptions from "./QuizOptions";
 import QuizResult from "./QuizResult";
-import { useEffect } from "react";
+import { useEffect, useReducer } from "react";
 import { useState } from "react";
 import QuizQuestionArea from "./QuizQuestionArea";
 import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+
+const initialState = null;
+
+const reducer = (state, action) => {
+  switch(action.type) {
+    case "CURRENT_TEST":
+      action.value.map((question) => {
+        question.choices.map(item => {
+        item.checked = false;
+        });
+      })
+
+      return action.value;
+
+    default:
+      return state;
+
+  }
+}
 
 export default function QuizApp({ t_details }) {
   // console.log("t_details ", t_details);
+  // const dispatch = useDispatch();
 
   let [sec1, setsec1] = useState();
   let [sec2, setsec2] = useState();
   let [sec3, setsec3] = useState();
+  
+
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+
+  const [qna, dispatch] = useReducer(reducer, initialState);
+
+  // console.log("Qna ", qna);
 
   useEffect(() => {
     setsec1(document.querySelector(".start")),
       setsec2(document.querySelector(".question-area")),
       setsec3(document.querySelector(".result"));
-  });
+
+      dispatch({
+        type :"CURRENT_TEST", 
+        value: t_details.test,
+      })
+
+  }, []);
   let q_area;
 
   let onclickHandeler = () => {
@@ -29,6 +63,7 @@ export default function QuizApp({ t_details }) {
     }
   };
 
+ 
 
   q_area = t_details.test.map(
     (item) => { return <QuizQuestionArea data={item} /> }

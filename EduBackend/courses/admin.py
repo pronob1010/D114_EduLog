@@ -25,7 +25,7 @@ class LessonAdmin(nested_admin.NestedStackedInline):
 class VideoAdmin(nested_admin.NestedStackedInline):
     model = Video
     exclude = ('slug',)
-class ChoiceInline(nested_admin.NestedStackedInline):
+class ChoiceInline(nested_admin.NestedTabularInline):
     model = TestChoice
     
 class TestAdmin(nested_admin.NestedStackedInline):

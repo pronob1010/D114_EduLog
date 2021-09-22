@@ -164,9 +164,7 @@ export default function courseDetaisls() {
   let v_state;
 
   v_state = v_link_data;
-  if (v_state) {
-    console.log("Updated v_state ", v_state);
-  }
+
 
   let uid = new Date().getUTCMilliseconds();
   if (v_state) {
@@ -183,7 +181,7 @@ export default function courseDetaisls() {
 
   // console.log( CourseDetails.willlearn)
 
-  console.log("test_block ", CourseDetails.lesson);
+  // console.log("test_block ", CourseDetails.lesson);
 
 let test_block;
   if(!isLoading){

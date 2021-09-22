@@ -34,7 +34,7 @@ export const courseReducer = (state = initialState, action) => {
       }
 
       case "SET_SINGLE_COURSE": {
-        console.log("SET_SINGLE_COURSE", action.value);
+        // console.log("SET_SINGLE_COURSE", action.value);
         let new_data = action.value;
         
         state.SingleCourseData = action.value;
@@ -43,13 +43,12 @@ export const courseReducer = (state = initialState, action) => {
         return state;
       }
 
+      case "CURRENT_TEST": {
+        console.log("CURRENT_TEST ", action.value);
+      }
+
     default:
         return state;
     }
 };
 
-// export const CourseDataReducer = (state = initialState, action) => {
-//   switch (action.type) {
-    
-//   }
-// };
