@@ -119,7 +119,6 @@ export default function Header() {
                       </Link>
                   <ul className="sub-menu" id="demo">
                     {cat_list}
-                    
                   </ul>
                 </li>
                 <li className="current-menu-item">

@@ -2,7 +2,7 @@ import QuizProgressBar from './QuixProgressbar';
 import QuizOptions from './QuizOptions';
 import { useState } from 'react';
 
-export default function QuizQuestionArea({ data, handleChange }) {
+export default function QuizQuestionArea({ data, handleChange, next, prev, progress}) {
     // console.log("Question i receive sent ", data);
 
 
@@ -35,16 +35,16 @@ export default function QuizQuestionArea({ data, handleChange }) {
                 </ul>
                 <div className="row m-2">
                     <div className="col-6">
-                        <button class="submit">Previous</button>
+                        <button class="submit" onClick={prev} >Previous</button>
                     </div>
                     <div className="col-6">
-                        <button class="submit">Next</button>
+                        <button class="submit" onClick={next}>Next</button>
                     </div>
                 </div>
             </div>
             <hr></hr>
             <div className="p-2 ">
-                <QuizProgressBar />
+                <QuizProgressBar progress = {progress} />
             </div>
         </>
     )

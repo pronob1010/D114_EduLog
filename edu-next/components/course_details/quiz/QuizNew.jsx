@@ -6,25 +6,29 @@ import { useState } from "react";
 import QuizQuestionArea from "./QuizQuestionArea";
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
-import _ from 'Lodash';
+import _, { cond } from 'Lodash';
 
 const initialState = null;
 
 const reducer = (state, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case "CURRENT_TEST":
       action.value.map((question) => {
         question.choices.map(item => {
-        item.checked = false;
+          item.checked = false;
         });
       })
 
       return action.value;
 
     case "ANSWER":
-      const questions = _.cloneDeep(state);
-      questions[action.questionId].choices[action.optionIndex].checked = action.value;
+      {
+        console.log("handleAnswerChange clicked.");
 
+        const questions = _.cloneDeep(state);
+        questions[action.questionId].choices[action.optionIndex].checked = action.value;
+
+      }
     default:
       return state;
 
@@ -38,7 +42,7 @@ export default function QuizApp({ t_details }) {
   let [sec1, setsec1] = useState();
   let [sec2, setsec2] = useState();
   let [sec3, setsec3] = useState();
-  
+
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
@@ -51,12 +55,13 @@ export default function QuizApp({ t_details }) {
       setsec2(document.querySelector(".question-area")),
       setsec3(document.querySelector(".result"));
 
-      dispatch({
-        type :"CURRENT_TEST", 
-        value: t_details.test,
-      })
+    dispatch({
+      type: "CURRENT_TEST",
+      value: t_details.test,
+    })
 
-  }, []);
+  }, [qna]);
+
   let q_area;
 
   let onclickHandeler = () => {
@@ -69,25 +74,46 @@ export default function QuizApp({ t_details }) {
   };
 
   function handleAnswerChange(e, index) {
-    console.log("handleAnswerChange clicked.");
     dispatch({
-      type : "ANSWER", 
+      type: "ANSWER",
       questionId: currentQuestion,
-      optionIndex : index, 
-      value : e.target.checked,
+      optionIndex: index,
+      value: e.target.checked,
     });
   }
 
- 
-if(qna){
-  // console.log("currentQuestion checker ", qna[currentQuestion]);
-
-  q_area = <QuizQuestionArea data={qna[currentQuestion]} handleChange={handleAnswerChange}/>
-
-  // q_area = qna.map(
-  //   (item) => { return <QuizQuestionArea data={item} /> }
-  // )
+  let qlen = 0;
+  if (qna){
+  qlen = qna.length;
 }
+  
+  // handelNextButton
+  function nextQuestion(){
+    if(currentQuestion <= qlen) {
+      setCurrentQuestion(prevCurrent => prevCurrent + 1);
+    }
+  }
+
+  // handelPreviousButton
+  function prevQuestion(){
+    if(currentQuestion >= 1 && currentQuestion <= qlen) {
+      setCurrentQuestion(prevCurrent => prevCurrent - 1);
+    }
+  }
+
+  const percentage = qlen > 0 ? ((currentQuestion + 1) / qlen)*100 : 0;
+
+  // const percentage = 0;
+
+  if (qna) {
+    // console.log("currentQuestion checker ", qna[currentQuestion]);
+
+    q_area = <QuizQuestionArea data={qna[currentQuestion]} handleChange={handleAnswerChange} next={nextQuestion} prev={prevQuestion} progress = { percentage }/>
+
+    // q_area = qna.map(
+    //   (item) => { return <QuizQuestionArea data={item} /> }
+    // )
+  }
 
   return (
     <>
